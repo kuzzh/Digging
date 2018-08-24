@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion Versions.compileSDK
+    defaultConfig {
+        minSdkVersion Versions.minSDK
+
+        buildConfigField "String", "ENCRYPT_KEY", "\"" + propOrDef("ENCRYPT_KEY", "") + "\""
+        buildConfigField "String", "X_HEADER_REQUEST_IMEI", "\"" + propOrDef("X_HEADER_REQUEST_IMEI", "") + "\""
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":base")
+    implementation project(":dytt")
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+}

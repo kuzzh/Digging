@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Versions.coroutines}"
+    api "com.google.dagger:dagger:${Versions.dagger}"
+    api "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    api "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+    api "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    api "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

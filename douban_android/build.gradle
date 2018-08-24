@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion Versions.compileSDK
+
+    defaultConfig {
+        minSdkVersion Versions.minSDK
+
+        buildConfigField "String", "API_DOUBAN_URL", "\"https://api.douban.com/\""
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":base")
+    implementation project(":douban")
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+
+}

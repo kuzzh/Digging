@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-kapt'
+kapt {
+    correctErrorTypes = true
+}
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    /*dataBinding {
+        enabled = true
+    }*/
+    compileSdkVersion Versions.compileSDK
+    defaultConfig {
+        applicationId "com.movies.douqi"
+        minSdkVersion Versions.minSDK
+        targetSdkVersion Versions.targetSDK
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'kotlin/**'
+        exclude '**/*.kotlin_metadata'
+        exclude 'META-INF/*.kotlin_module'
+        exclude 'META-INF/*.version'
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains:annotations:16.0.1'
+            force "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
+            force "com.android.support:support-fragment:${Versions.support}"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':base')
+    implementation project(':base_android')
+    implementation project(':data')
+    implementation project(':douban')
+    implementation project(':douban_android')
+    implementation project(':dytt')
+    implementation project(':dytt_android')
+}
+
+dependencies {
+    kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    kapt "com.github.bumptech.glide:compiler:${Versions.glide}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${Versions.support}"
+    implementation "com.android.support:customtabs:${Versions.support}"
+    implementation "com.android.support:palette-v7:${Versions.support}"
+    implementation "com.android.support:recyclerview-v7:${Versions.support}"
+    implementation "com.android.support:support-emoji:${Versions.support}"
+
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    implementation "com.google.android.material:material:${Versions.material}"
+    implementation "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    implementation "com.google.dagger:dagger-android:${Versions.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    implementation "com.github.bumptech.glide:glide:${Versions.glide}"
+    implementation "androidx.core:core-ktx:${Versions.ktx}"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:${Versions.lifecycle}"
+    implementation "androidx.room:room-runtime:${Versions.room}"
+    implementation "androidx.room:room-rxjava2:${Versions.room}"
+    implementation "androidx.paging:paging-runtime:${Versions.paging}"
+    implementation "androidx.paging:paging-rxjava2:${Versions.paging}"
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    testImplementation "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    testImplementation "androidx.room:room-testing:${Versions.room}"
+    testImplementation "androidx.paging:paging-common:${Versions.paging}"
+}

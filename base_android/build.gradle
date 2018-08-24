@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion Versions.compileSDK
+
+    defaultConfig {
+        minSdkVersion Versions.minSDK
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":base")
+    api "com.jakewharton.timber:timber:${Versions.timber}"
+    implementation "com.android.support:support-fragment:${Versions.support}"
+}
