@@ -11,7 +11,7 @@ import javax.inject.Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
 @MustBeDocumented
-annotation class Douban
+annotation class DOUBAN
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier

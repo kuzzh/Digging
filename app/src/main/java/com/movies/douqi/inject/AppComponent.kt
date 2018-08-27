@@ -1,10 +1,9 @@
 package com.movies.douqi.inject
 
-import com.movies.data.DataModule
-import com.movies.douban.injection.DoubanModule
+import com.movies.data.ApiModule
+import com.movies.data.HttpModule
 import com.movies.douqi.App
 import com.movies.douqi.ui.main.MainBuilder
-import com.movies.dytt.injection.DYTTModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -19,8 +18,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    DoubanModule::class, DYTTModule::class,
-    DataModule::class, InterceptorModule::class,
+    InterceptorModule::class,
+    ApiModule::class, HttpModule::class,
     AppModule::class, MainBuilder::class
 ])
 interface AppComponent : AndroidInjector<App> {

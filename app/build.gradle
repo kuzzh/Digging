@@ -10,9 +10,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    /*dataBinding {
+    dataBinding {
         enabled = true
-    }*/
+    }
     compileSdkVersion Versions.compileSDK
     defaultConfig {
         applicationId "com.movies.douqi"
@@ -22,9 +22,32 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile rootProject.file("buildsystem/app-debug.jks")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
         release {
-            minifyEnabled false
+            storeFile rootProject.file(propOrDef('DOUQI_RELEASE_STORE_FILE', ""))
+            storePassword propOrDef('DOUQI_RELEASE_STORE_PWD', "")
+            keyAlias propOrDef('DOUQI_RELEASE_KEY_ALIAS', "")
+            keyPassword propOrDef('DOUQI_RELEASE_KEY_PWD', "")
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            versionNameSuffix "-dev"
+            applicationIdSuffix ".debug"
+        }
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,6 +64,13 @@ android {
         exclude 'META-INF/*.version'
     }
 
+    lintOptions {
+        // Disable lintVital. Not needed since lint is run on CI
+        checkReleaseBuilds false
+
+        disable 'GradleCompatible'
+    }
+
     configurations.all {
         resolutionStrategy {
             force 'org.jetbrains:annotations:16.0.1'
@@ -55,10 +85,7 @@ dependencies {
     implementation project(':base')
     implementation project(':base_android')
     implementation project(':data')
-    implementation project(':douban')
-    implementation project(':douban_android')
-    implementation project(':dytt')
-    implementation project(':dytt_android')
+    implementation project(':data_android')
 }
 
 dependencies {
