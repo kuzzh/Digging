@@ -1,8 +1,10 @@
-package com.movies.douqi
+package com.movies.douqi.base
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
 /**
  * @author donnieSky
@@ -11,6 +13,9 @@ import dagger.android.support.DaggerAppCompatActivity
  * @version
  */
 abstract class BaseActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
 
     open fun handleIntent(intent: Intent) {}
 

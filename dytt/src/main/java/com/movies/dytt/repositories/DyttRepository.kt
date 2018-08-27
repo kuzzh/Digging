@@ -21,4 +21,9 @@ class DyttRepository @Inject constructor(
                     search: String): Flowable<MovieList<Movie>> {
         return remote.searchMovie(page, search)
     }
+
+    fun getMovieList(categoryId: Int,
+                     page: Int): Flowable<MovieList<Movie>> {
+        return remote.getMovieList(categoryId, page)
+    }
 }

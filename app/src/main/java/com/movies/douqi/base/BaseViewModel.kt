@@ -1,4 +1,4 @@
-package com.movies.douqi
+package com.movies.douqi.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

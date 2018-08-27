@@ -7,6 +7,6 @@ package com.movies.dytt.entities
  * @version
  */
 data class MovieList<T>(
-        private val total: Long,
-        private val rows: List<T>? = null
+        val total: Long,
+        val rows: List<T>? = null
 )

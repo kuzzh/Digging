@@ -86,6 +86,7 @@ dependencies {
     implementation project(':base_android')
     implementation project(':data')
     implementation project(':data_android')
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.61"
 }
 
 dependencies {

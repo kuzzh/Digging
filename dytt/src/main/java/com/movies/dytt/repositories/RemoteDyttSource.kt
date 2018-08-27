@@ -21,4 +21,9 @@ class RemoteDyttSource @Inject constructor(
                     search: String): Flowable<MovieList<Movie>> {
         return api.searchMovie(categoryId = 0, page = page, search = search)
     }
+
+    fun getMovieList(categoryId: Int,
+                     page: Int): Flowable<MovieList<Movie>> {
+        return api.getMovieList(categoryId, page)
+    }
 }
