@@ -29,7 +29,9 @@ class DoubanFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         model.data.observeNotNull(this) { result ->
-
+            if (result.subjects != null && result.subjects!!.isNotEmpty()) {
+                binding.recycler.adapter = DoubanAdapter(result.subjects!!)
+            }
         }
     }
 
@@ -41,6 +43,8 @@ class DoubanFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        model.inTheaters()
     }
 
 }

@@ -33,11 +33,11 @@ class DyttAdapter(val movies: List<Movie>) : RecyclerView.Adapter<DyttAdapter.Dy
     }
 
 
-    inner class DyttViewHolder : RecyclerView.ViewHolder {
+    inner class DyttViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val text: TextView
 
-        constructor(itemView: View) : super(itemView) {
+        init {
             text = itemView.findViewById(android.R.id.text1)
         }
     }

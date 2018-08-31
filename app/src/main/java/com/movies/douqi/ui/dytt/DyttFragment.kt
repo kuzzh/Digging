@@ -18,9 +18,9 @@ import com.movies.douqi.extensions.observeNotNull
  */
 class DyttFragment : BaseFragment() {
 
-    lateinit var model: DyttViewModel
+    private lateinit var model: DyttViewModel
 
-    lateinit var binding: FragmentDyttBinding
+    private lateinit var binding: FragmentDyttBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,10 +7,10 @@ package com.movies.douban.entities
  * @version
  */
 data class DBListResult<T>(
-        private val count: Int,
-        private val start: Int,
-        private val total: Int,
-        private val title: String,
-        private val date: String,
-        private val subjects: List<T>? = null
+        val count: Int,
+        val start: Int,
+        val total: Int,
+        val title: String,
+        val date: String,
+        val subjects: List<T>? = null
 )
