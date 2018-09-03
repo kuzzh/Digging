@@ -30,8 +30,8 @@ class DyttViewModel @Inject constructor(
     val data: LiveData<MovieList<Movie>>
         get() = _data
 
-    fun getMovieList() {
-        repository.getMovieList(9, 1)
+    fun getMovieList(title: String) {
+        repository.searchMovie(1, title)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

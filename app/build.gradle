@@ -137,3 +137,7 @@ dependencies {
     testImplementation "androidx.room:room-testing:${Versions.room}"
     testImplementation "androidx.paging:paging-common:${Versions.paging}"
 }
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.+'
+}

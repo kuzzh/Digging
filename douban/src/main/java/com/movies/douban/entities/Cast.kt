@@ -7,8 +7,9 @@ package com.movies.douban.entities
  * @version
  */
 data class Cast(
-        private val id: String,
-        private val name: String,
-        private val alt: String,
-        private val avatars: Avatars
+        val id: String,
+        val name: String,
+        val name_en: String? = null,
+        val alt: String,
+        val avatars: Avatars
 )

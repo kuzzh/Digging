@@ -1,7 +1,6 @@
 package com.movies.douban.repositories
 
-import com.movies.douban.entities.DBListResult
-import com.movies.douban.entities.Subject
+import com.movies.douban.entities.DBSubjectResult
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,7 +16,7 @@ class DoubanRepository @Inject constructor(
         private val local: LocalDoubanSource,
         private val remote: RemoteDoubanSource
 ) {
-    fun inTheaters(): Flowable<DBListResult<Subject>> {
+    fun inTheaters(): Flowable<DBSubjectResult> {
         return remote.inTheaters()
     }
 }

@@ -27,6 +27,10 @@ data class Subject(
         val genres: List<String>? = null,
         val aka: List<String>? = null,
         val casts: List<Cast>? = null,
+        val mainland_pubdate: String? = null,
+        val pubdates: List<String>? = null,
+        val has_video: Boolean,
+        val durations: List<String>? = null,
         @SerializedName("collect_count")
         val collectCount: Long,
         @SerializedName("reviews_count")

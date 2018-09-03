@@ -1,8 +1,6 @@
 package com.movies.douqi.ui.main
 
 import com.movies.douqi.ui.douban.DoubanBuilder
-import com.movies.douqi.ui.dytt.DyttBuilder
-import com.movies.douqi.ui.other.OtherBuilder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -17,9 +15,7 @@ internal abstract class MainBuilder {
 
     @ContributesAndroidInjector(modules = [
         MainModule::class,
-        DoubanBuilder::class,
-        DyttBuilder::class,
-        OtherBuilder::class
+        DoubanBuilder::class
     ])
     internal abstract fun buildMainActivity(): MainActivity
 

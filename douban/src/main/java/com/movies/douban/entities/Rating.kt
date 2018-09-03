@@ -7,8 +7,9 @@ package com.movies.douban.entities
  * @version
  */
 data class Rating(
-        private val max: Int,
-        private val average: Double,
-        private val stars: String,
-        private val min: Int
+        val max: Int,
+        val average: Double,
+        val stars: String,
+        val min: Int,
+        val details: Map<Int, Long>? = null
 )

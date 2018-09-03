@@ -22,6 +22,20 @@ class DyttFragment : BaseFragment() {
 
     private lateinit var binding: FragmentDyttBinding
 
+    private val title: String by lazy {
+        arguments!!.getString(ARGS_MOVIE_TITLE)
+    }
+
+    companion object {
+        private const val ARGS_MOVIE_TITLE = "ARGS_MOVIE_TITLE"
+        fun newInstance(title: String): DyttFragment {
+            val bundle = Bundle().apply {
+                putString(ARGS_MOVIE_TITLE, title)
+            }
+            return DyttFragment().apply { arguments = bundle }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         model = ViewModelProviders.of(this, factory).get(DyttViewModel::class.java)
@@ -49,7 +63,7 @@ class DyttFragment : BaseFragment() {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 
-        model.getMovieList()
+        model.getMovieList(title)
     }
 
 }

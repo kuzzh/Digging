@@ -1,6 +1,8 @@
 package com.movies.data
 
 import com.movies.douban.Douban
+import com.movies.douban.interceptors.DoubanInterceptor
+import com.movies.dytt.DYTT.Companion.API_URL
 import com.movies.dytt.interceptors.DyttInterceptor
 import com.movies.inject.DOUBAN
 import com.movies.inject.DYTT
@@ -29,7 +31,7 @@ class HttpModule {
     fun provideDYTTRetrofit(@DYTT client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .client(client)
-                .baseUrl("http://m.dydytt.net:8080/")
+                .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .build()
@@ -68,6 +70,7 @@ class HttpModule {
             interceptors: Set<@JvmSuppressWildcards Interceptor>
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
+        builder.addNetworkInterceptor(DoubanInterceptor())
         interceptors.forEach {
             builder.addNetworkInterceptor(it)
         }

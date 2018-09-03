@@ -14,7 +14,12 @@ import com.movies.douqi.databinding.ListDoubanItemBinding
  * @description
  * @version
  */
-class DoubanAdapter(val subjects: List<Subject>) : RecyclerView.Adapter<DoubanAdapter.DoubanViewHolder>() {
+class DoubanAdapter() : RecyclerView.Adapter<DoubanAdapter.DoubanViewHolder>() {
+
+    var subjects: List<Subject> = emptyList()
+
+    var onDoubanItemClickListener: onItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoubanViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListDoubanItemBinding.inflate(inflater, parent, false)
@@ -34,10 +39,16 @@ class DoubanAdapter(val subjects: List<Subject>) : RecyclerView.Adapter<DoubanAd
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(o: Any?) {
+            if (onDoubanItemClickListener != null) {
+                binding.root.setOnClickListener { onDoubanItemClickListener!!.onClick(o as? Subject) }
+            }
             binding.setVariable(BR.subject, o)
             binding.executePendingBindings()
         }
+    }
 
+    interface onItemClickListener {
+        fun onClick(subject: Subject?)
     }
 
 }

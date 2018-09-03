@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import com.movies.douban.entities.Subject
 import com.movies.douqi.base.BaseFragment
 import com.movies.douqi.databinding.FragmentDoubanBinding
 import com.movies.douqi.extensions.observeNotNull
+import com.movies.douqi.ui.detail.MovieDetailActivity
 
 /**
  * @author donnieSky
@@ -21,6 +24,8 @@ class DoubanFragment : BaseFragment() {
 
     lateinit var binding: FragmentDoubanBinding
 
+    private val adapter = DoubanAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         model = ViewModelProviders.of(this, factory).get(DoubanViewModel::class.java)
@@ -30,7 +35,9 @@ class DoubanFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         model.data.observeNotNull(this) { result ->
             if (result.subjects != null && result.subjects!!.isNotEmpty()) {
-                binding.recycler.adapter = DoubanAdapter(result.subjects!!)
+                binding.swipe.isRefreshing = false
+                adapter.subjects = result.subjects!!
+                adapter.notifyDataSetChanged()
             }
         }
     }
@@ -43,8 +50,22 @@ class DoubanFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter.onDoubanItemClickListener = object : DoubanAdapter.onItemClickListener {
+            override fun onClick(subject: Subject?) {
+                if (subject != null) {
+                    startActivity(MovieDetailActivity.startIntent(context!!, subject.title))
+                }
+            }
+        }
+        binding.recycler.layoutManager = GridLayoutManager(context, 3)
+        binding.recycler.adapter = adapter
+
+        binding.swipe.setOnRefreshListener {
+            model.inTheaters()
+        }
 
         model.inTheaters()
+
     }
 
 }

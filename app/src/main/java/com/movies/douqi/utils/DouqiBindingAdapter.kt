@@ -19,6 +19,7 @@ fun ImageView.loadFilm(url: String?) {
             GlideApp.with(this)
                     .saturateOnLoad()
                     .load(url)
+                    .centerCrop()
                     .into(this)
         }
     }

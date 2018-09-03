@@ -6,11 +6,11 @@ package com.movies.douban.entities
  * @description
  * @version
  */
-data class DBListResult<T>(
+data class DBSubjectResult(
         val count: Int,
         val start: Int,
         val total: Int,
         val title: String,
         val date: String,
-        val subjects: List<T>? = null
+        val subjects: List<Subject>? = null
 )
