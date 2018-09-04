@@ -2,10 +2,6 @@ package com.movies.douqi.inject
 
 import android.content.Context
 import com.movies.douqi.App
-import com.movies.douqi.initializers.AppInitializers
-import com.movies.douqi.initializers.EmojiInitializer
-import com.movies.douqi.initializers.RxAndroidInitializer
-import com.movies.douqi.initializers.TimberInitializer
 import com.movies.utils.AppRxSchedulers
 import dagger.Module
 import dagger.Provides
@@ -20,7 +16,7 @@ import javax.inject.Singleton
  * @description
  * @version
  */
-@Module(includes = [])
+@Module(includes = [InitializerModule::class])
 class AppModule {
 
     @Singleton
@@ -34,14 +30,6 @@ class AppModule {
             computation = Schedulers.computation(),
             main = AndroidSchedulers.mainThread()
     )
-
-    @Singleton
-    @Provides
-    fun provideAppInitializers(
-            rxAndroidInitializer: RxAndroidInitializer,
-            timberInitializer: TimberInitializer,
-            emojiInitializer: EmojiInitializer
-    ) = AppInitializers(rxAndroidInitializer, timberInitializer, emojiInitializer)
 
     @Singleton
     @Provides

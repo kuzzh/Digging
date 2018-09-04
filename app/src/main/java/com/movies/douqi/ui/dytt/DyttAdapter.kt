@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.movies.douqi.R
 import com.movies.dytt.entities.Movie
 
 /**
@@ -17,7 +18,7 @@ class DyttAdapter(val movies: List<Movie>) : RecyclerView.Adapter<DyttAdapter.Dy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DyttViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-                android.R.layout.simple_list_item_1,
+                R.layout.list_dytt_item,
                 parent,
                 false
         )
@@ -35,10 +36,7 @@ class DyttAdapter(val movies: List<Movie>) : RecyclerView.Adapter<DyttAdapter.Dy
 
     inner class DyttViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val text: TextView
+        val text: TextView = itemView.findViewById(R.id.sourceName)
 
-        init {
-            text = itemView.findViewById(android.R.id.text1)
-        }
     }
 }

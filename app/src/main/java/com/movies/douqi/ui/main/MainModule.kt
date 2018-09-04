@@ -2,8 +2,11 @@ package com.movies.douqi.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.movies.douqi.inject.ViewModelKey
+import com.movies.douqi.ui.douban.DoubanFragment
+import com.movies.douqi.ui.douban.DoubanViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 /**
@@ -14,6 +17,14 @@ import dagger.multibindings.IntoMap
  */
 @Module
 abstract class MainModule {
+
+    @ContributesAndroidInjector
+    internal abstract fun buildDoubanFragment(): DoubanFragment
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DoubanViewModel::class)
+    abstract fun bindDoubanViewModel(viewModel: DoubanViewModel): ViewModel
 
     @Binds
     @IntoMap

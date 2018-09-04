@@ -18,6 +18,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":base")
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
     api "com.jakewharton.timber:timber:${Versions.timber}"
-    implementation "com.android.support:support-fragment:${Versions.support}"
 }

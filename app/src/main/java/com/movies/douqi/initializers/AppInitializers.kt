@@ -1,6 +1,7 @@
 package com.movies.douqi.initializers
 
 import android.app.Application
+import javax.inject.Inject
 
 /**
  * @author donnieSky
@@ -8,10 +9,10 @@ import android.app.Application
  * @description
  * @version
  */
-class AppInitializers(
-        private vararg val initializers: Initializer
-) : Initializer {
-    override fun init(application: Application) {
+class AppInitializers @Inject constructor(
+        private val initializers: Set<@JvmSuppressWildcards Initializer>
+) {
+    fun init(application: Application) {
         initializers.forEach {
             it.init(application)
         }

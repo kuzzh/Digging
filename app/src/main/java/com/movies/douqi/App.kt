@@ -1,9 +1,10 @@
 package com.movies.douqi
 
+import com.movies.douqi.initializers.AppInitializers
 import com.movies.douqi.inject.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
-import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * @author donnieSky
@@ -13,9 +14,12 @@ import timber.log.Timber
  */
 class App : DaggerApplication() {
 
+    @Inject
+    lateinit var initializers: AppInitializers
+
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
+        initializers.init(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

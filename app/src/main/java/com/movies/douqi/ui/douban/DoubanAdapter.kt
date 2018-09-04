@@ -14,7 +14,7 @@ import com.movies.douqi.databinding.ListDoubanItemBinding
  * @description
  * @version
  */
-class DoubanAdapter() : RecyclerView.Adapter<DoubanAdapter.DoubanViewHolder>() {
+class DoubanAdapter : RecyclerView.Adapter<DoubanAdapter.DoubanViewHolder>() {
 
     var subjects: List<Subject> = emptyList()
 
