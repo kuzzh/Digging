@@ -6,13 +6,13 @@ package com.movies.dytt.entities
  * @description
  * @version
  */
-data class Movie(
+data class Seed(
         val id: Long,
         val categoryId: Int,
         val name: String,
         val publishTime: String,
-        val homePicUrl: String,
-        val content: String,
-        val pics: String,
-        val downloadUrl: String
+        val homePicUrl: String? = null,
+        val content: String? = null,
+        val pics: String? = null,
+        val downloadUrl: String? = null
 )

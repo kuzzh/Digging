@@ -39,4 +39,17 @@ class RetrofitRunner @Inject constructor() {
         }
         return executeForResponse(unitMapper, request)
     }
+
+    suspend fun <T, E> mapperForResponse(mapper: Mapper<T, E>, request: suspend () -> T?): Result<E> {
+        return try {
+            val response = request()
+            if (response != null) {
+                Success(data = mapper.map(response))
+            } else {
+                Failure(Exception("result is null"))
+            }
+        } catch (e: Exception) {
+            Failure(e)
+        }
+    }
 }

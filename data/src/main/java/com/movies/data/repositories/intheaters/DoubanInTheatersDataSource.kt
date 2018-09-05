@@ -1,10 +1,15 @@
 package com.movies.data.repositories.intheaters
 
 import com.movies.data.RetrofitRunner
+import com.movies.data.entities.Film
+import com.movies.data.entities.InTheaterEntry
 import com.movies.data.entities.Result
-import com.movies.douban.entities.DBSubjectResult
+import com.movies.data.mappers.IndexedMapper
+import com.movies.data.mappers.SubjectToFilm
+import com.movies.data.mappers.pairMapperOf
+import com.movies.douban.entities.Subject
 import com.movies.douban.services.DoubanService
-import com.movies.extensions.executeWithRetry
+import com.movies.extensions.fetchBodyWithRetry
 import javax.inject.Inject
 
 /**
@@ -15,11 +20,21 @@ import javax.inject.Inject
  */
 class DoubanInTheatersDataSource @Inject constructor(
         private val douban: DoubanService,
-        private val runner: RetrofitRunner
+        private val runner: RetrofitRunner,
+        private val mapper: SubjectToFilm
 ) : InTheatersDataSource {
-    override suspend fun getInTheaters(page: Int, pageSize: Int): Result<DBSubjectResult> {
-        return runner.executeForResponse {
-            douban.inTheaters(page, pageSize).executeWithRetry()
+
+    private val entryMapper = object : IndexedMapper<Subject, InTheaterEntry> {
+        override fun map(index: Int, from: Subject): InTheaterEntry {
+            return InTheaterEntry(entryId = 0, page = 0, pageOrder = index)
+        }
+    }
+
+    private val resultsMapper = pairMapperOf(mapper, entryMapper)
+
+    override suspend fun getInTheaters(page: Int, pageSize: Int): Result<List<Pair<Film, InTheaterEntry>>> {
+        return runner.mapperForResponse(resultsMapper) {
+            douban.inTheaters(page, pageSize).fetchBodyWithRetry().subjects
         }
     }
 }

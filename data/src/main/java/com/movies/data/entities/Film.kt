@@ -1,9 +1,6 @@
 package com.movies.data.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 
 /**
@@ -13,13 +10,18 @@ import androidx.room.PrimaryKey
  * @version
  */
 @Entity(tableName = "films",
-        indices = [Index(value = ["film_id"], unique = true)])
+        indices = [
+            Index(value = ["douban_id"], unique = true),
+            Index(value = ["dytt_id"], unique = true)
+        ])
 data class Film(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        override val movieId: Long? = null,
-        @ColumnInfo(name = "film_id")
-        val id: String,
+        override val id: Long = 0,
+        @ColumnInfo(name = "douban_id")
+        override val doubanId: String? = null,
+        @ColumnInfo(name = "dytt_id")
+        override val dyttId: Long? = null,
         @ColumnInfo(name = "film_name")
         val title: String? = null,
         @ColumnInfo(name = "film_original_name")
@@ -32,9 +34,15 @@ data class Film(
         @ColumnInfo(name = "film_rating")
         val ratingsCount: Long? = null,
         @ColumnInfo(name = "film_image")
-        val images: String? = null
-) : MovieEntity {
+        val images: String? = null,
+        @ColumnInfo(name = "download_url")
+        val downloadUrl: String? = null
+) : MovieEntity, DoubanIdEntity, DyttIdEntity {
+
+    @Ignore
+    constructor() : this(0)
+
     companion object {
-        val EMPTY = Film(id = "0")
+        val EMPTY_FILM = Film()
     }
 }

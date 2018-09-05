@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.movies.douqi.R
-import com.movies.dytt.entities.Movie
+import com.movies.dytt.entities.Seed
 
 /**
  * @author donnieSky
@@ -14,7 +14,7 @@ import com.movies.dytt.entities.Movie
  * @description
  * @version
  */
-class DyttAdapter(val movies: List<Movie>) : RecyclerView.Adapter<DyttAdapter.DyttViewHolder>() {
+class DyttAdapter(val seeds: List<Seed>) : RecyclerView.Adapter<DyttAdapter.DyttViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DyttViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -26,11 +26,11 @@ class DyttAdapter(val movies: List<Movie>) : RecyclerView.Adapter<DyttAdapter.Dy
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return seeds.size
     }
 
     override fun onBindViewHolder(holder: DyttViewHolder, position: Int) {
-        holder.text.text = movies[position].name
+        holder.text.text = seeds[position].name
     }
 
 

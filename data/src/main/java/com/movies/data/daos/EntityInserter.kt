@@ -1,6 +1,6 @@
 package com.movies.data.daos
 
-import com.movies.data.DBTransactionRunner
+import com.movies.data.DatabaseTransactionRunner
 import com.movies.data.entities.MovieEntity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,7 +13,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class EntityInserter @Inject constructor(
-        private val transaction: DBTransactionRunner
+        private val transaction: DatabaseTransactionRunner
 ) {
 
     fun <E : MovieEntity> insertOrUpdate(dao: EntityDao<E>, entities: List<E>) = transaction {
@@ -23,10 +23,10 @@ class EntityInserter @Inject constructor(
     }
 
     fun <E : MovieEntity> insertOrUpdate(dao: EntityDao<E>, entity: E): Long = when {
-        entity.movieId == null -> dao.insert(entity)
+        entity.id == 0L -> dao.insert(entity)
         else -> {
             dao.update(entity)
-            entity.movieId!!
+            entity.id
         }
     }
 

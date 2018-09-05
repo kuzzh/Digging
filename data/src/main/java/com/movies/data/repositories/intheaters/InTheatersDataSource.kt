@@ -1,7 +1,8 @@
 package com.movies.data.repositories.intheaters
 
+import com.movies.data.entities.Film
+import com.movies.data.entities.InTheaterEntry
 import com.movies.data.entities.Result
-import com.movies.douban.entities.DBSubjectResult
 
 /**
  * @author donnieSky
@@ -11,6 +12,6 @@ import com.movies.douban.entities.DBSubjectResult
  */
 interface InTheatersDataSource {
 
-    suspend fun getInTheaters(page: Int, pageSize: Int): Result<DBSubjectResult>
+    suspend fun getInTheaters(page: Int, pageSize: Int): Result<List<Pair<Film, InTheaterEntry>>>
 
 }

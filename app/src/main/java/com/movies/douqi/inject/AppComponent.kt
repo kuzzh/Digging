@@ -1,6 +1,7 @@
 package com.movies.douqi.inject
 
 import com.movies.data.ApiModule
+import com.movies.data.DatabaseModule
 import com.movies.data.HttpModule
 import com.movies.douqi.App
 import dagger.Component
@@ -19,6 +20,7 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     InterceptorModule::class,
     ViewModelModule::class,
+    DatabaseModule::class,
     ApiModule::class, HttpModule::class,
     AppModule::class, ActivityBindingModule::class
 ])

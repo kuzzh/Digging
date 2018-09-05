@@ -1,7 +1,7 @@
 package com.movies.data.repositories.films
 
+import com.movies.data.entities.Film
 import com.movies.data.entities.Result
-import com.movies.douban.entities.DBSubjectResult
 
 /**
  * @author donnieSky
@@ -10,5 +10,5 @@ import com.movies.douban.entities.DBSubjectResult
  * @version
  */
 interface FilmDataSource {
-    suspend fun inTheaters(): Result<DBSubjectResult>
+    suspend fun getFilm(film: Film): Result<Film>
 }

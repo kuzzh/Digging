@@ -9,6 +9,14 @@ android {
 
     defaultConfig {
         minSdkVersion Versions.minSDK
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -25,5 +33,8 @@ dependencies {
     api project(':douban_android')
     api project(':dytt')
     api project(':dytt_android')
+    implementation project(':data')
+    implementation "androidx.room:room-rxjava2:${Versions.room}"
     kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
 }

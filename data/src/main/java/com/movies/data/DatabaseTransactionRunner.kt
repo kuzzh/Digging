@@ -6,6 +6,6 @@ package com.movies.data
  * @description
  * @version
  */
-interface DBTransactionRunner {
+interface DatabaseTransactionRunner {
     operator fun <T> invoke(run: () -> T): T
 }

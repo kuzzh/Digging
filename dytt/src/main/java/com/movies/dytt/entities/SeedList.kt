@@ -6,7 +6,7 @@ package com.movies.dytt.entities
  * @description
  * @version
  */
-data class MovieList<T>(
+data class SeedList<T>(
         val total: Long,
         val rows: List<T>? = null
 )

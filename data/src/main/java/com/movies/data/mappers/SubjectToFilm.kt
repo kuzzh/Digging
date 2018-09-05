@@ -14,8 +14,7 @@ import javax.inject.Singleton
 @Singleton
 class SubjectToFilm @Inject constructor() : Mapper<Subject, Film> {
     override fun map(from: Subject) = Film(
-            movieId = 0,
-            id = from.id,
+            doubanId = from.id,
             title = from.title,
             originalTitle = from.originalTitle,
             summary = from.summary,

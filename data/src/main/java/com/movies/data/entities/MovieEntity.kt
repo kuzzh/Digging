@@ -7,5 +7,13 @@ package com.movies.data.entities
  * @version
  */
 interface MovieEntity {
-    val movieId: Long?
+    val id: Long
+}
+
+interface DoubanIdEntity {
+    val doubanId: String?
+}
+
+interface DyttIdEntity {
+    val dyttId: Long?
 }

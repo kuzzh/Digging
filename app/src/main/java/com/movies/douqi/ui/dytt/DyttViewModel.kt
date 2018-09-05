@@ -3,8 +3,8 @@ package com.movies.douqi.ui.dytt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.movies.douqi.base.BaseViewModel
-import com.movies.dytt.entities.Movie
-import com.movies.dytt.entities.MovieList
+import com.movies.dytt.entities.Seed
+import com.movies.dytt.entities.SeedList
 import com.movies.dytt.repositories.DyttRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -26,8 +26,8 @@ class DyttViewModel @Inject constructor(
 
     private val TAG = DyttViewModel::class.simpleName
 
-    private val _data = MutableLiveData<MovieList<Movie>>()
-    val data: LiveData<MovieList<Movie>>
+    private val _data = MutableLiveData<SeedList<Seed>>()
+    val data: LiveData<SeedList<Seed>>
         get() = _data
 
     fun getMovieList(title: String) {
