@@ -1,6 +1,7 @@
 package com.movies.data
 
 import androidx.room.TypeConverter
+import com.movies.data.entities.Request
 import org.threeten.bp.Instant
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -21,5 +22,13 @@ object DouqiTypeConverters {
     @TypeConverter
     @JvmStatic
     fun fromInstant(date: Instant?) = date?.toEpochMilli()
+
+    @TypeConverter
+    @JvmStatic
+    fun toRequest(value: String) = Request.values().first { it.tag == value }
+
+    @TypeConverter
+    @JvmStatic
+    fun fromRequest(request: Request) = request.tag
 
 }

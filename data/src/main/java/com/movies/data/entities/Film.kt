@@ -36,7 +36,9 @@ data class Film(
         @ColumnInfo(name = "film_image")
         val images: String? = null,
         @ColumnInfo(name = "download_url")
-        val downloadUrl: String? = null
+        val downloadUrl: String? = null,
+        @ColumnInfo(name = "category_id")
+        val categoryId: Int? = null
 ) : MovieEntity, DoubanIdEntity, DyttIdEntity {
 
     @Ignore

@@ -12,7 +12,7 @@ import java.util.*
  * @description
  * @version
  */
-class InTheaterEntryWithFilm : EntryWithShow<InTheaterEntry> {
+class InTheaterEntryWithFilm : EntryWithFilm<InTheaterEntry> {
     @Embedded
     override var entry: InTheaterEntry? = null
 

@@ -10,7 +10,7 @@ import java.util.*
  * @description
  * @version
  */
-interface EntryWithShow<ET : Entry> {
+interface EntryWithFilm<ET : Entry> {
 
     var entry: ET?
     var relations: List<Film>

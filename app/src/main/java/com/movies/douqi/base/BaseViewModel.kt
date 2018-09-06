@@ -1,7 +1,9 @@
 package com.movies.douqi.base
 
 import androidx.lifecycle.ViewModel
+import com.movies.douqi.utils.IViewModel
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.experimental.Job
 
 /**
  * @author donnieSky
@@ -9,13 +11,16 @@ import io.reactivex.disposables.CompositeDisposable
  * @description
  * @version
  */
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel(), IViewModel {
 
-    val disposables = CompositeDisposable()
+    override val viewModelJob = Job()
+
+    override val disposables = CompositeDisposable()
 
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
+        viewModelJob.cancel()
     }
 
 }

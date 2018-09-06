@@ -13,4 +13,5 @@ enum class Request(val tag: String) {
     WEEKLY_FILMS("weekly_films"),
     US_BOX("us_box"),
     NEW_MOVIES("new_movies"),
+    FILM_DETAIL("film_details")
 }

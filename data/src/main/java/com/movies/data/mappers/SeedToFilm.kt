@@ -15,6 +15,7 @@ import javax.inject.Singleton
 class SeedToFilm @Inject constructor() : Mapper<Seed, Film> {
     override fun map(from: Seed) = Film(
             dyttId = from.id,
+            categoryId = from.categoryId,
             downloadUrl = from.downloadUrl
     )
 }

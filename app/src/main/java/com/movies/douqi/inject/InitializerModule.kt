@@ -4,9 +4,12 @@ import com.movies.douqi.initializers.EmojiInitializer
 import com.movies.douqi.initializers.Initializer
 import com.movies.douqi.initializers.RxAndroidInitializer
 import com.movies.douqi.initializers.TimberInitializer
+import com.movies.utils.Logger
+import com.movies.utils.TimberLogger
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
+import javax.inject.Singleton
 
 /**
  * @author donnieSky
@@ -16,6 +19,10 @@ import dagger.multibindings.IntoSet
  */
 @Module
 abstract class InitializerModule {
+
+    @Singleton
+    @Binds
+    abstract fun provideLogger(logger: TimberLogger): Logger
 
     @Binds
     @IntoSet

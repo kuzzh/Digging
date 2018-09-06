@@ -3,6 +3,7 @@ package com.movies.data
 import android.content.Context
 import android.os.Debug
 import androidx.room.Room
+import com.movies.data.repositories.films.FilmsModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,7 +14,7 @@ import javax.inject.Singleton
  * @description
  * @version
  */
-@Module
+@Module(includes = [FilmsModule::class])
 class DatabaseModule {
 
     @Singleton
@@ -27,6 +28,7 @@ class DatabaseModule {
         return builder.build()
     }
 
+    @Provides
     fun provideDatabaseTransactionRunner(db: DouqiDatabase): DatabaseTransactionRunner = RoomTransactionRunner(db)
 
     @Provides
@@ -34,5 +36,8 @@ class DatabaseModule {
 
     @Provides
     fun provideInTheaterDao(db: DouqiDatabase) = db.inTheaterDao()
+
+    @Provides
+    fun provideLastRequestDao(db: DouqiDatabase) = db.lastRequestDao()
 
 }

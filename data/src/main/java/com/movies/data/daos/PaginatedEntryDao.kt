@@ -1,7 +1,7 @@
 package com.movies.data.daos
 
 import com.movies.data.PaginatedEntry
-import com.movies.data.resultentities.EntryWithShow
+import com.movies.data.resultentities.EntryWithFilm
 
 /**
  * @author donnieSky
@@ -9,7 +9,7 @@ import com.movies.data.resultentities.EntryWithShow
  * @description
  * @version
  */
-interface PaginatedEntryDao<EC : PaginatedEntry, LI : EntryWithShow<EC>> : EntryDao<EC, LI> {
+interface PaginatedEntryDao<EC : PaginatedEntry, LI : EntryWithFilm<EC>> : EntryDao<EC, LI> {
     fun deletePage(page: Int)
     fun getLastPage(): Int?
 }

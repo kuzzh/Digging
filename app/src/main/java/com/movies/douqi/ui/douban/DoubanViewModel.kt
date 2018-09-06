@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.movies.douban.entities.DBSubjectResult
 import com.movies.douban.repositories.DoubanRepository
 import com.movies.douqi.base.BaseViewModel
+import com.movies.interactors.UpdateInTheaterFilms
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +21,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class DoubanViewModel @Inject constructor(
-        private val repository: DoubanRepository
+        private val repository: DoubanRepository,
+        private val interactor: UpdateInTheaterFilms
 ) : BaseViewModel() {
 
     private val TAG = DoubanViewModel::class.simpleName
