@@ -3,7 +3,7 @@ package com.movies.data.resultentities
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.movies.data.entities.Film
-import com.movies.data.entities.InTheaterEntry
+import com.movies.data.entities.InTheaterFilmEntry
 import java.util.*
 
 /**
@@ -12,12 +12,11 @@ import java.util.*
  * @description
  * @version
  */
-class InTheaterEntryWithFilm : EntryWithFilm<InTheaterEntry> {
+class InTheaterEntryWithFilm : EntryWithFilm<InTheaterFilmEntry> {
     @Embedded
-    override var entry: InTheaterEntry? = null
+    override var entry: InTheaterFilmEntry? = null
 
-    @Relation(parentColumn = "entry_id",
-            entityColumn = "id")
+    @Relation(parentColumn = "film_id", entityColumn = "id")
     override var relations: List<Film> = emptyList()
 
     override fun equals(other: Any?): Boolean = when {

@@ -3,7 +3,7 @@ package com.movies.data.repositories.intheaters
 import androidx.paging.DataSource
 import com.movies.data.DatabaseTransactionRunner
 import com.movies.data.daos.InTheaterDao
-import com.movies.data.entities.InTheaterEntry
+import com.movies.data.entities.InTheaterFilmEntry
 import com.movies.data.resultentities.InTheaterEntryWithFilm
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -27,9 +27,9 @@ class LocalinTheatersStore @Inject constructor(
         return dao.entriesDataSource()
     }
 
-    fun saveInTheatersPage(page: Int, entries: List<InTheaterEntry>) = runner {
+    fun saveInTheatersPage(page: Int, filmEntries: List<InTheaterFilmEntry>) = runner {
         dao.deletePage(page)
-        dao.insertAll(entries)
+        dao.insertAll(filmEntries)
     }
 
     fun deleteAll() = dao.deleteAll()

@@ -46,6 +46,11 @@ class DoubanFragment : BaseFragment() {
         }*/
 
         inTheater.liveList.observeByNull(this) {
+            if (it != null && it.size > 0) {
+                it.forEach { film ->
+                    logger.d(film.film.toString())
+                }
+            }
             adapter.submitList(it)
         }
 

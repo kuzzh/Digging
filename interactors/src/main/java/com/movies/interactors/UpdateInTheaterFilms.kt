@@ -23,6 +23,10 @@ class UpdateInTheaterFilms @Inject constructor(
 ) : PagingInteractor<InTheaterEntryWithFilm>, SubjectInteractor<Unit, UpdateInTheaterFilms.ExecuteParams, List<InTheaterEntryWithFilm>>() {
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
+    init {
+        setParams(Unit)
+    }
+
     override fun dataSourceFactory(): DataSource.Factory<Int, InTheaterEntryWithFilm> {
         return repository.observeForPaging()
     }

@@ -10,19 +10,19 @@ import com.movies.data.PaginatedEntry
  * @version
  */
 @Entity(tableName = "in_theaters",
-        indices = [Index(value = ["entry_id"], unique = true)],
+        indices = [Index(value = ["film_id"], unique = true)],
         foreignKeys = [
             ForeignKey(entity = Film::class,
                     parentColumns = arrayOf("id"),
-                    childColumns = arrayOf("entry_id"),
+                    childColumns = arrayOf("film_id"),
                     onUpdate = ForeignKey.CASCADE,
                     onDelete = ForeignKey.CASCADE)
         ])
-data class InTheaterEntry(
+data class InTheaterFilmEntry(
         @PrimaryKey(autoGenerate = true)
         override val id: Long = 0,
-        @ColumnInfo(name = "entry_id")
-        override val entryId: Long,
+        @ColumnInfo(name = "film_id")
+        override val filmId: Long,
         @ColumnInfo(name = "page")
         override val page: Int,
         @ColumnInfo(name = "page_order")

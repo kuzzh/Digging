@@ -8,6 +8,10 @@
         <variable
             name="subject"
             type="com.movies.douban.entities.Subject"/>
+
+        <variable
+            name="film"
+            type="com.movies.data.resultentities.InTheaterEntryWithFilm"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -34,7 +38,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:url="@{subject.images.medium}"
+                app:url="@{film.film.images}"
                 tools:srcCompat="@tools:sample/avatars[10]"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

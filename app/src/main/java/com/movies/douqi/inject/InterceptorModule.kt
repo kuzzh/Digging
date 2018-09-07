@@ -23,5 +23,5 @@ class InterceptorModule {
     fun provideHttpLogger(): Interceptor = HttpLoggingInterceptor(
             HttpLoggingInterceptor.Logger { message ->
                 Timber.d(message)
-            }).setLevel(HttpLoggingInterceptor.Level.BODY)
+            }).setLevel(HttpLoggingInterceptor.Level.BASIC)
 }

@@ -15,7 +15,7 @@ android {
     }
     compileSdkVersion Versions.compileSDK
     defaultConfig {
-        applicationId "com.seeds.douqi"
+        applicationId "com.movies.douqi"
         minSdkVersion Versions.minSDK
         targetSdkVersion Versions.targetSDK
         versionCode 1

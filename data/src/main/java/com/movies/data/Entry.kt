@@ -9,7 +9,7 @@ import com.movies.data.entities.MovieEntity
  * @version
  */
 interface Entry : MovieEntity {
-    val entryId: Long
+    val filmId: Long
 }
 
 interface MultipleEntry : Entry {

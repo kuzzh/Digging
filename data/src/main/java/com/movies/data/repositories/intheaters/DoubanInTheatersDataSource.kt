@@ -2,7 +2,7 @@ package com.movies.data.repositories.intheaters
 
 import com.movies.data.RetrofitRunner
 import com.movies.data.entities.Film
-import com.movies.data.entities.InTheaterEntry
+import com.movies.data.entities.InTheaterFilmEntry
 import com.movies.data.entities.Result
 import com.movies.data.mappers.IndexedMapper
 import com.movies.data.mappers.SubjectToFilm
@@ -24,15 +24,15 @@ class DoubanInTheatersDataSource @Inject constructor(
         private val mapper: SubjectToFilm
 ) : InTheatersDataSource {
 
-    private val entryMapper = object : IndexedMapper<Subject, InTheaterEntry> {
-        override fun map(index: Int, from: Subject): InTheaterEntry {
-            return InTheaterEntry(entryId = 0, page = 0, pageOrder = index)
+    private val entryMapper = object : IndexedMapper<Subject, InTheaterFilmEntry> {
+        override fun map(index: Int, from: Subject): InTheaterFilmEntry {
+            return InTheaterFilmEntry(filmId = 0, page = 0, pageOrder = index)
         }
     }
 
     private val resultsMapper = pairMapperOf(mapper, entryMapper)
 
-    override suspend fun getInTheaters(page: Int, pageSize: Int): Result<List<Pair<Film, InTheaterEntry>>> {
+    override suspend fun getInTheaters(page: Int, pageSize: Int): Result<List<Pair<Film, InTheaterFilmEntry>>> {
         return runner.mapperForResponse(resultsMapper) {
             douban.inTheaters(page, pageSize).fetchBodyWithRetry().subjects
         }

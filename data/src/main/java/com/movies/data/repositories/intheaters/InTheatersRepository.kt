@@ -31,13 +31,15 @@ class InTheatersRepository @Inject constructor(
     fun observeForFlowable(): Flowable<List<InTheaterEntryWithFilm>> = localIntheater.observeForFlowable(10, 0)
 
     suspend fun refresh() {
-        updateIntheaterFilms(0, true)
+        updateIntheaterFilms(1, true)
     }
 
     suspend fun loadNextPage() {
         val lastPage = localIntheater.getLastPage()
         if (lastPage != null) {
             updateIntheaterFilms(lastPage + 1, false)
+        } else {
+            refresh()
         }
     }
 
@@ -47,15 +49,15 @@ class InTheatersRepository @Inject constructor(
             is Success -> {
                 response.data.map { (film, entry) ->
                     val filmId = filmStore.getIdOrSavePlaceholder(film)
-                    entry.copy(entryId = filmId, page = page)
+                    entry.copy(filmId = filmId, page = page)
                 }.also { entries ->
                     if (resetOnSave) {
                         localIntheater.deleteAll()
                     }
                     localIntheater.saveInTheatersPage(page, entries)
                     entries.parallelForEach(dispatchers.io) { entry ->
-                        if (repository.needsUpdate(entry.entryId)) {
-                            repository.updateFilm(entry.entryId)
+                        if (repository.needsUpdate(entry.filmId)) {
+                            repository.updateFilm(entry.filmId)
                         }
                     }
                 }

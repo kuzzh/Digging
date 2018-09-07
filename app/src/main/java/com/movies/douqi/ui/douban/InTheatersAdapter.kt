@@ -1,16 +1,14 @@
 package com.movies.douqi.ui.douban
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.view.doOnLayout
+import androidx.databinding.ViewDataBinding
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.movies.data.resultentities.InTheaterEntryWithFilm
-import com.movies.douqi.R
-import com.movies.douqi.utils.GlideApp
+import com.movies.douqi.BR
+import com.movies.douqi.databinding.ListDoubanItemBinding
 
 /**
  * @author donnieSky
@@ -18,38 +16,27 @@ import com.movies.douqi.utils.GlideApp
  * @description
  * @version
  */
-class InTheatersAdapter() : PagedListAdapter<InTheaterEntryWithFilm, RecyclerView.ViewHolder>(FILM_COMPARATOR) {
-
-    var intheaters: List<InTheaterEntryWithFilm> = emptyList()
-
-    override fun getItemCount(): Int {
-        return intheaters.size
-    }
+class InTheatersAdapter : PagedListAdapter<InTheaterEntryWithFilm, RecyclerView.ViewHolder>(FILM_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_douban_item, parent, false)
-        return DoubanViewHolder(view)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ListDoubanItemBinding.inflate(inflater, parent, false)
+        return DoubanViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val intheater = intheaters[position]
         if (holder is DoubanViewHolder) {
-            GlideApp.with(holder.image).clear(holder.image)
-
-            if (intheater.film.images != null) {
-                holder.image.doOnLayout {
-                    GlideApp.with(holder.image)
-                            .saturateOnLoad()
-                            .load(intheater.film.images)
-                            .centerCrop()
-                            .into(holder.image)
-                }
-            }
+            holder.bind(getItem(position))
         }
     }
 
-    inner class DoubanViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
-        val image: ImageView = itemview.findViewById(R.id.image)
+    inner class DoubanViewHolder(
+            private val binding: ViewDataBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(o: Any?) {
+            binding.setVariable(BR.film, o)
+            binding.executePendingBindings()
+        }
     }
 
     companion object {
@@ -60,11 +47,7 @@ class InTheatersAdapter() : PagedListAdapter<InTheaterEntryWithFilm, RecyclerVie
             }
 
             override fun areItemsTheSame(oldItem: InTheaterEntryWithFilm, newItem: InTheaterEntryWithFilm): Boolean {
-                return oldItem.film == newItem.film
-            }
-
-            override fun getChangePayload(oldItem: InTheaterEntryWithFilm, newItem: InTheaterEntryWithFilm): Any? {
-                return super.getChangePayload(oldItem, newItem)
+                return oldItem.film.id == newItem.film.id
             }
         }
     }

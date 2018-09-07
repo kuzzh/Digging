@@ -22,9 +22,11 @@ class DatabaseModule {
     fun provideDatabase(context: Context): DouqiDatabase {
         val builder = Room.databaseBuilder(context, DouqiDatabase::class.java, "dou_qi_films.db")
                 .fallbackToDestructiveMigration()
+
         if (Debug.isDebuggerConnected()) {
             builder.allowMainThreadQueries()
         }
+
         return builder.build()
     }
 

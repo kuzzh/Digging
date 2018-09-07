@@ -4,7 +4,7 @@ import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.movies.data.entities.InTheaterEntry
+import com.movies.data.entities.InTheaterFilmEntry
 import com.movies.data.resultentities.InTheaterEntryWithFilm
 import io.reactivex.Flowable
 
@@ -15,7 +15,7 @@ import io.reactivex.Flowable
  * @version
  */
 @Dao
-abstract class InTheaterDao : PaginatedEntryDao<InTheaterEntry, InTheaterEntryWithFilm> {
+abstract class InTheaterDao : PaginatedEntryDao<InTheaterFilmEntry, InTheaterEntryWithFilm> {
 
     @Transaction
     @Query("SELECT * FROM in_theaters ORDER BY page, page_order LIMIT :count OFFSET :offset")

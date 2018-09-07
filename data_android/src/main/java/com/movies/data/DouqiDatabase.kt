@@ -7,7 +7,7 @@ import com.movies.data.daos.FilmsDao
 import com.movies.data.daos.InTheaterDao
 import com.movies.data.daos.LastRequestDao
 import com.movies.data.entities.Film
-import com.movies.data.entities.InTheaterEntry
+import com.movies.data.entities.InTheaterFilmEntry
 import com.movies.data.entities.LastRequest
 
 /**
@@ -19,7 +19,7 @@ import com.movies.data.entities.LastRequest
 @Database(
         entities = [
             Film::class,
-            InTheaterEntry::class,
+            InTheaterFilmEntry::class,
             LastRequest::class
         ],
         version = 1
