@@ -2,7 +2,7 @@ object Versions {
     const val minSDK = 21
     const val targetSDK = 28
     const val compileSDK = 28
-    const val buildTools = "3.2.0-rc02"
+    const val buildTools = "3.3.0-alpha08"
     const val kotlin = "1.2.61"
     const val ktx = "1.0.0-rc02"
     const val coroutines = "0.24.0"
