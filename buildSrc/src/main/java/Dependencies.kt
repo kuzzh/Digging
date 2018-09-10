@@ -23,6 +23,8 @@ object Versions {
     const val glide = "4.8.0"
     const val navigation = "1.0.0-alpha05"
     const val workManager = "1.0.0-alpha07"
+    const val epoxy = "3.0.0-rc1"
+    const val mvrx = "0.5.0"
 }
 
 object Deps {

@@ -40,7 +40,6 @@ class InTheatersAdapter : PagedListAdapter<InTheaterEntryWithFilm, RecyclerView.
     }
 
     companion object {
-        private val PAYLOAD_SCORE = Any()
         val FILM_COMPARATOR = object : DiffUtil.ItemCallback<InTheaterEntryWithFilm>() {
             override fun areContentsTheSame(oldItem: InTheaterEntryWithFilm, newItem: InTheaterEntryWithFilm): Boolean {
                 return oldItem == newItem

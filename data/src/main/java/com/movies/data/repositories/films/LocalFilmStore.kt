@@ -38,7 +38,6 @@ class LocalFilmStore @Inject constructor(
     fun updateLastRequest(id: Long) = lastRequestDao.updateLastRequest(Request.FILM_DETAIL, id)
 
     fun getIdOrSavePlaceholder(film: Film): Long = runner {
-        film.doubanId?.let { dao.getFilmWithDoubanId(it)?.id }
-                ?: dao.insert(film)
+        film.doubanId?.let { dao.getFilmWithDoubanId(it)?.id } ?: dao.insert(film)
     }
 }

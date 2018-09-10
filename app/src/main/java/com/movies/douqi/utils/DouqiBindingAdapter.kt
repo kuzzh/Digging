@@ -1,5 +1,6 @@
 package com.movies.douqi.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.view.doOnLayout
 import androidx.databinding.BindingAdapter
@@ -23,4 +24,9 @@ fun ImageView.loadFilm(url: String?) {
                     .into(this)
         }
     }
+}
+
+@BindingAdapter("visibleIfNotNull")
+fun View.visibleIfNotNull(target: Any?) {
+    this.visibility = if (target == null) View.GONE else View.VISIBLE
 }

@@ -5,21 +5,38 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
+        <import type="android.content.Context"/>
+
         <variable
             name="subject"
             type="com.movies.douban.entities.Subject"/>
 
         <variable
             name="film"
-            type="com.movies.data.resultentities.InTheaterEntryWithFilm"/>
+            type="com.movies.data.entities.Film"/>
+
+        <variable
+            name="label"
+            type="String"/>
+
+        <variable
+            name="labelIcon"
+            type="int"/>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:foreground="?android:attr/selectableItemBackground"
-        android:transitionGroup="true"
+        android:stateListAnimator="@animator/card_state_list_anim"
+        android:onClick="@{clickListener}"
         app:cardCornerRadius="2dp"
         app:cardElevation="10dp"
         app:cardPreventCornerOverlap="true">
@@ -28,18 +45,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
+            <TextView
+                android:id="@+id/film_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:textAppearance="?attr/textAppearanceBody2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="w, 5:7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:url="@{film.film.images}"
+                tools:text="@sample/films.txt"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="w, 1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{film.images}"
                 tools:srcCompat="@tools:sample/avatars[10]"/>
+
+            <TextView
+                android:id="@+id/film_label"
+                style="@style/Widget.GridItem.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@{labelIcon != 0 ? context.getDrawable(labelIcon) : null}"
+                android:text="@{label}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleIfNotNull="@{label}"
+                tools:text="100"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

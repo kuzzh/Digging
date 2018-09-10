@@ -95,6 +95,7 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:${Versions.glide}"
     kapt "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     kapt "androidx.room:room-compiler:${Versions.room}"
+    kapt "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
 }
 
 dependencies {
@@ -127,6 +128,11 @@ dependencies {
     implementation "androidx.room:room-rxjava2:${Versions.room}"
     implementation "androidx.paging:paging-runtime:${Versions.paging}"
     implementation "androidx.paging:paging-rxjava2:${Versions.paging}"
+
+    implementation "com.airbnb.android:mvrx:${Versions.mvrx}"
+    implementation "com.airbnb.android:epoxy:${Versions.epoxy}"
+    implementation "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
+    implementation "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
 }
 
 dependencies {

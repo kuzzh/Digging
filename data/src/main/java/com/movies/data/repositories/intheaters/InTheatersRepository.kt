@@ -31,7 +31,7 @@ class InTheatersRepository @Inject constructor(
     fun observeForFlowable(): Flowable<List<InTheaterEntryWithFilm>> = localIntheater.observeForFlowable(10, 0)
 
     suspend fun refresh() {
-        updateIntheaterFilms(1, true)
+        updateIntheaterFilms(0, true)
     }
 
     suspend fun loadNextPage() {

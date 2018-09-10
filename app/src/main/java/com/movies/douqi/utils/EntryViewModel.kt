@@ -25,7 +25,7 @@ abstract class EntryViewModel<LI : EntryWithFilm<out Entry>>(
         private val dispatchers: AppCoroutineDispatchers,
         private val dataSource: DataSource.Factory<Int, LI>,
         private val logger: Logger,
-        private val pageSize: Int = 20
+        private val pageSize: Int = 21
 ) : BaseViewModel() {
 
     init {

@@ -19,13 +19,17 @@ class InTheatersViewModel @Inject constructor(
         schedulers: AppRxSchedulers,
         dispatchers: AppCoroutineDispatchers,
         private val interactor: UpdateInTheaterFilms,
-        logger: Logger
+        val logger: Logger
 ) : EntryViewModel<InTheaterEntryWithFilm>(
         schedulers,
         dispatchers,
         interactor.dataSourceFactory(),
         logger
 ) {
+
+    fun onItemClicked() {
+        logger.d("grid item clicked !")
+    }
 
     override suspend fun callRefresh() {
         withContext(interactor.dispatcher) {
