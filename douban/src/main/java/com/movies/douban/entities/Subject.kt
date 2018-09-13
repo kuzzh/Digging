@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
 data class Subject(
         val id: String,
         val title: String,
-        val summary: String,
+        val summary: String? = null,
         @SerializedName("mobile_url")
         val mobileUrl: String,
         @SerializedName("share_url")
@@ -41,6 +41,7 @@ data class Subject(
         val commentsCount: Long,
         @SerializedName("ratings_count")
         val ratingsCount: Long,
+        val rating: Rating? = null,
         val directors: List<Cast>? = null,
         val images: Avatars
 )

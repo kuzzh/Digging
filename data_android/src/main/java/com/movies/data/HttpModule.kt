@@ -6,6 +6,9 @@ import com.movies.dytt.DYTT.Companion.API_URL
 import com.movies.dytt.interceptors.DyttInterceptor
 import com.movies.inject.DOUBAN
 import com.movies.inject.DYTT
+import com.movies.inject.MAHUA
+import com.movies.mahua.Mahua
+import com.movies.mahua.interceptors.MahuaInterceptor
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -71,6 +74,32 @@ class HttpModule {
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
         builder.addNetworkInterceptor(DoubanInterceptor())
+        interceptors.forEach {
+            builder.addNetworkInterceptor(it)
+        }
+        return builder.build()
+    }
+
+    @MAHUA
+    @Provides
+    @Singleton
+    fun provideMahuaRetrofit(@MAHUA client: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+                .client(client)
+                .baseUrl(Mahua.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .build()
+    }
+
+    @MAHUA
+    @Provides
+    @Singleton
+    fun provideMahuaClient(
+            interceptors: Set<@JvmSuppressWildcards Interceptor>
+    ): OkHttpClient {
+        val builder = OkHttpClient.Builder()
+        builder.addNetworkInterceptor(MahuaInterceptor())
         interceptors.forEach {
             builder.addNetworkInterceptor(it)
         }

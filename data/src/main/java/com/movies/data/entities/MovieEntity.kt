@@ -13,7 +13,3 @@ interface MovieEntity {
 interface DoubanIdEntity {
     val doubanId: String?
 }
-
-interface DyttIdEntity {
-    val dyttId: Long?
-}

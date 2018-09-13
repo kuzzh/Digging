@@ -16,7 +16,7 @@ annotation class DOUBAN
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
 @MustBeDocumented
-annotation class IMDB
+annotation class MAHUA
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier

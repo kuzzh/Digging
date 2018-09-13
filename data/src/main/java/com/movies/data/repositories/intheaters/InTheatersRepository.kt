@@ -35,9 +35,15 @@ class InTheatersRepository @Inject constructor(
     }
 
     suspend fun loadNextPage() {
-        val lastPage = localIntheater.getLastPage()
+        /*val lastPage = localIntheater.getLastPage()
         if (lastPage != null) {
-            updateIntheaterFilms(lastPage + 1, false)
+            updateIntheaterFilms(lastPage + 20, false)
+        } else {
+            refresh()
+        }*/
+        val pageCount = localIntheater.getPageCount()
+        if (pageCount != null) {
+            updateIntheaterFilms(pageCount, false)
         } else {
             refresh()
         }

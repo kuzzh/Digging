@@ -6,6 +6,9 @@ import com.movies.dytt.services.DYTTApi
 import com.movies.dytt.services.DYTTService
 import com.movies.inject.DOUBAN
 import com.movies.inject.DYTT
+import com.movies.inject.MAHUA
+import com.movies.mahua.services.MahuaApi
+import com.movies.mahua.services.MahuaService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -41,5 +44,17 @@ class ApiModule {
     @Singleton
     fun provideDYTTService(@DYTT retrofit: Retrofit): DYTTService {
         return retrofit.create(DYTTService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMahuaApi(@MAHUA retrofit: Retrofit): MahuaApi {
+        return retrofit.create(MahuaApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMahuaService(@MAHUA retrofit: Retrofit): MahuaService {
+        return retrofit.create(MahuaService::class.java)
     }
 }

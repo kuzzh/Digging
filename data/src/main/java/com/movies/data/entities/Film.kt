@@ -11,8 +11,7 @@ import androidx.room.*
  */
 @Entity(tableName = "films",
         indices = [
-            Index(value = ["douban_id"], unique = true),
-            Index(value = ["dytt_id"], unique = true)
+            Index(value = ["douban_id"], unique = true)
         ])
 data class Film(
         @PrimaryKey(autoGenerate = true)
@@ -20,8 +19,6 @@ data class Film(
         override val id: Long = 0,
         @ColumnInfo(name = "douban_id")
         override val doubanId: String? = null,
-        @ColumnInfo(name = "dytt_id")
-        override val dyttId: Long? = null,
         @ColumnInfo(name = "film_name")
         val title: String? = null,
         @ColumnInfo(name = "film_original_name")
@@ -32,14 +29,10 @@ data class Film(
         val year: String? = null,
         val alt: String? = null,
         @ColumnInfo(name = "film_rating")
-        val ratingsCount: Long? = null,
+        val ratingsCount: Double? = null,
         @ColumnInfo(name = "film_image")
-        val images: String? = null,
-        @ColumnInfo(name = "download_url")
-        val downloadUrl: String? = null,
-        @ColumnInfo(name = "category_id")
-        val categoryId: Int? = null
-) : MovieEntity, DoubanIdEntity, DyttIdEntity {
+        val images: String? = null
+) : MovieEntity, DoubanIdEntity {
 
     @Ignore
     constructor() : this(0)

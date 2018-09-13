@@ -31,14 +31,8 @@ abstract class FilmsDao : EntityDao<Film> {
     @Query("SELECT * FROM films WHERE douban_id = :doubanId")
     abstract fun getFilmWithDoubanId(doubanId: String): Film?
 
-    @Query("SELECT * FROM films WHERE dytt_id = :dytt_id")
-    abstract fun getFilmWithDyttId(dytt_id: Long): Film?
-
     @Query("SELECT douban_id FROM films WHERE id = :id")
     abstract fun getDoubanIdForId(id: Long): String?
-
-    @Query("SELECT dytt_id FROM films WHERE id = :id")
-    abstract fun getDyttIdForId(id: Long): Long?
 
     @Query("SELECT id FROM films WHERE douban_id = :doubanId")
     abstract fun getIdForDoubanId(doubanId: String): Long?

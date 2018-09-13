@@ -11,6 +11,6 @@ data class DBSubjectResult(
         val start: Int,
         val total: Int,
         val title: String,
-        val date: String,
+        val date: String? = null,
         val subjects: List<Subject>? = null
 )

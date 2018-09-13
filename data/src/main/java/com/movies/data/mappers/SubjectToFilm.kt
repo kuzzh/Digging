@@ -21,7 +21,7 @@ class SubjectToFilm @Inject constructor() : Mapper<Subject, Film> {
             subType = from.subType,
             year = from.year,
             alt = from.alt,
-            ratingsCount = from.ratingsCount,
+            ratingsCount = from.rating?.average,
             images = from.images.medium
     )
 }

@@ -2,7 +2,6 @@ package com.movies.data.daos
 
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Update
 import com.movies.data.entities.MovieEntity
 
@@ -14,13 +13,13 @@ import com.movies.data.entities.MovieEntity
  */
 interface EntityDao<in E : MovieEntity> {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     fun insert(entity: E): Long
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     fun insertAll(vararg entity: E)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     fun insertAll(entities: List<E>)
 
     @Update

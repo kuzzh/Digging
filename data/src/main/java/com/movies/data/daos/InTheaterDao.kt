@@ -33,4 +33,7 @@ abstract class InTheaterDao : PaginatedEntryDao<InTheaterFilmEntry, InTheaterEnt
 
     @Query("SELECT MAX(page) FROM in_theaters")
     abstract override fun getLastPage(): Int?
+
+    @Query("SELECT COUNT(id) FROM IN_THEATERS")
+    abstract fun getPageCount(): Int?
 }

@@ -22,9 +22,9 @@ class DyttFragment : BaseFragment() {
 
     private lateinit var binding: FragmentDyttBinding
 
-    private val title: String by lazy {
+    /*private val title: String by lazy {
         arguments!!.getString(ARGS_MOVIE_TITLE)
-    }
+    }*/
 
     companion object {
         private const val ARGS_MOVIE_TITLE = "ARGS_MOVIE_TITLE"
@@ -48,6 +48,12 @@ class DyttFragment : BaseFragment() {
                 binding.recycler.adapter = DyttAdapter(it.rows!!)
             }
         }
+
+        model.mahuaData.observeNotNull(this) {
+            if (it.success && it.data != null && it.data!!.isNotEmpty()) {
+                binding.recycler.adapter = MahuaAdapter(it.data!!)
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -62,8 +68,9 @@ class DyttFragment : BaseFragment() {
         binding.recycler.apply {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+        model.searchVideo()
 
-        model.getMovieList(title)
+        // model.getMovieList(title)
     }
 
 }

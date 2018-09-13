@@ -36,4 +36,6 @@ class LocalinTheatersStore @Inject constructor(
 
     fun getLastPage(): Int? = dao.getLastPage()
 
+    fun getPageCount(): Int? = dao.getPageCount()
+
 }

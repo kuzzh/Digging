@@ -47,6 +47,7 @@ abstract class EntryViewModel<LI : EntryWithFilm<out Entry>>(
                 }
         ).setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
             override fun onItemAtEndLoaded(itemAtEnd: LI) {
+                logger.d("onItemAtEndLoaded <><><><><>")
                 onListScrolledToEnd()
             }
         }).build().distinctUntilChanged()

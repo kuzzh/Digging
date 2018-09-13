@@ -1,1 +1,1 @@
-include ':app', ':base', ':base_android', ':data', ':dytt', ':dytt_android', ':douban', ':douban_android', ':data_android', ':interactors'
+include ':app', ':base', ':base_android', ':data', ':dytt', ':dytt_android', ':douban', ':douban_android', ':data_android', ':interactors', ':mahua', ':mahua_android'

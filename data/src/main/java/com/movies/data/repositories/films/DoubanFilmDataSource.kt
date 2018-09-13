@@ -6,7 +6,6 @@ import com.movies.data.entities.Film
 import com.movies.data.entities.Result
 import com.movies.data.mappers.SubjectToFilm
 import com.movies.douban.services.DoubanService
-import com.movies.dytt.services.DYTTService
 import com.movies.extensions.executeWithRetry
 import javax.inject.Inject
 
@@ -18,7 +17,6 @@ import javax.inject.Inject
  */
 class DoubanFilmDataSource @Inject constructor(
         private val douban: DoubanService,
-        private val dytt: DYTTService,
         private val mapper: SubjectToFilm,
         private val runner: RetrofitRunner
 ) : FilmDataSource {

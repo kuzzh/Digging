@@ -1,7 +1,6 @@
 package com.movies.data.repositories.films
 
 import com.movies.inject.DOUBAN
-import com.movies.inject.DYTT
 import dagger.Binds
 import dagger.Module
 
@@ -20,9 +19,5 @@ abstract class FilmsModule {
     @Binds
     @DOUBAN
     abstract fun bind(source: DoubanFilmDataSource): FilmDataSource
-
-    @Binds
-    @DYTT
-    abstract fun bind(source: DyttFilmDataSource): FilmDataSource
 
 }

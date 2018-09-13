@@ -76,4 +76,12 @@ interface DoubanService {
     @GET("v2/movie/celebrity/{celebrityId}/photos")
     fun getCelebrityPhotos(@Path("celebrityId") id: String): Call<DBCelebrityPhotos>
 
+    /**
+     * 搜索影片
+     */
+    @GET("v2/movie/search")
+    fun search(@Query("q") content: String,
+               @Query("start") start: Int,
+               @Query("count") count: Int): Call<DBSubjectResult>
+
 }

@@ -55,8 +55,7 @@ open class EntryGridEpoxyController<LI : EntryWithFilm<out Entry>> : PagingEpoxy
         return DoubanItemBindingModel_()
                 .id(item.generateStableId())
                 .film(item.film)
-                .label("100")
-                .labelIcon(R.drawable.ic_eye)
+                .labelIcon(R.drawable.ic_star)
                 .clickListener(View.OnClickListener { callbacks?.onItemClicked(item) })
     }
 

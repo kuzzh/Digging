@@ -33,6 +33,8 @@ dependencies {
     api project(':douban_android')
     api project(':dytt')
     api project(':dytt_android')
+    api project(':mahua')
+    api project(':mahua_android')
     implementation project(':data')
     implementation "androidx.room:room-rxjava2:${Versions.room}"
     kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"

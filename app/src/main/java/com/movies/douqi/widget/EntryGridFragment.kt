@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.movies.data.Entry
 import com.movies.data.resultentities.EntryWithFilm
@@ -48,7 +47,6 @@ abstract class EntryGridFragment<LI : EntryWithFilm<out Entry>, VM : EntryViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = recycler.layoutManager as GridLayoutManager
         recycler.apply {
             itemAnimator = null
             setController(controller)

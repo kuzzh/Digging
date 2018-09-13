@@ -15,7 +15,7 @@ object Versions {
     const val rxAndroid = "2.1.0"
     const val appcompat = "1.0.0-rc02"
     const val support = "28.0.0-rc01"
-    const val material = "1.0.0-rc01"
+    const val material = "1.0.0-rc02"
     const val constraint = "1.1.3"
     const val room = "2.0.0-rc01"
     const val lifecycle = "2.0.0-rc01"
