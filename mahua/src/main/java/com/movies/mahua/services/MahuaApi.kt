@@ -1,6 +1,5 @@
 package com.movies.mahua.services
 
-import com.movies.mahua.entities.BodyParams
 import com.movies.mahua.entities.VideoInfoResult
 import com.movies.mahua.entities.VideosResult
 import io.reactivex.Flowable
@@ -20,6 +19,6 @@ interface MahuaApi {
     fun searchVideo(@Body body: RequestBody): Flowable<VideosResult>
 
     @POST("api/app/video/v3/video/searchVideoInfoDetail_v3")
-    fun getVideoDetail(@Body params: BodyParams): Flowable<VideoInfoResult>
+    fun getVideoDetail(@Body body: RequestBody): Flowable<VideoInfoResult>
 
 }

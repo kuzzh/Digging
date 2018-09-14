@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.movies.douqi.base.BaseFragment
 import com.movies.douqi.databinding.FragmentDyttBinding
 import com.movies.douqi.extensions.observeNotNull
+import com.movies.douqi.ui.mahua.MahuaViewModel
 
 /**
  * @author donnieSky
@@ -20,11 +21,13 @@ class DyttFragment : BaseFragment() {
 
     private lateinit var model: DyttViewModel
 
+    private lateinit var mahuaModel: MahuaViewModel
+
     private lateinit var binding: FragmentDyttBinding
 
-    /*private val title: String by lazy {
+    private val title: String by lazy {
         arguments!!.getString(ARGS_MOVIE_TITLE)
-    }*/
+    }
 
     companion object {
         private const val ARGS_MOVIE_TITLE = "ARGS_MOVIE_TITLE"
@@ -39,6 +42,7 @@ class DyttFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         model = ViewModelProviders.of(this, factory).get(DyttViewModel::class.java)
+        mahuaModel = ViewModelProviders.of(this, factory).get(MahuaViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -52,6 +56,12 @@ class DyttFragment : BaseFragment() {
         model.mahuaData.observeNotNull(this) {
             if (it.success && it.data != null && it.data!!.isNotEmpty()) {
                 binding.recycler.adapter = MahuaAdapter(it.data!!)
+            }
+        }
+
+        mahuaModel.data.observeNotNull(this) {
+            if (it.isNotEmpty()) {
+                binding.recycler.adapter = MahuaAdapter(it)
             }
         }
     }
@@ -68,9 +78,11 @@ class DyttFragment : BaseFragment() {
         binding.recycler.apply {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
-        model.searchVideo()
+        //model.searchVideo()
 
         // model.getMovieList(title)
+        mahuaModel.search(title, 1)
+
     }
 
 }

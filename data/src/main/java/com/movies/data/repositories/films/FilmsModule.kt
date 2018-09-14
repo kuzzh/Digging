@@ -1,5 +1,7 @@
 package com.movies.data.repositories.films
 
+import com.movies.data.repositories.seeds.SeedRepository
+import com.movies.data.repositories.seeds.SeedRepositoryImpl
 import com.movies.inject.DOUBAN
 import dagger.Binds
 import dagger.Module
@@ -19,5 +21,8 @@ abstract class FilmsModule {
     @Binds
     @DOUBAN
     abstract fun bind(source: DoubanFilmDataSource): FilmDataSource
+
+    @Binds
+    abstract fun bind(source: SeedRepositoryImpl): SeedRepository
 
 }

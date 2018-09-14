@@ -10,5 +10,6 @@ enum class Status {
     SUCCESS,
     ERROR,
     REFRESHING,
-    LOADING_MORE
+    LOADING_MORE,
+    LOADING
 }

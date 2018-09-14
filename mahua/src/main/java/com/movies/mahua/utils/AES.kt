@@ -2,7 +2,7 @@ package com.movies.mahua.utils
 
 import com.movies.mahua.Mahua
 import org.apache.commons.codec.binary.Hex
-import org.apache.commons.codec.digest.DigestUtils
+import org.apache.commons.codec.digest.DigestUtils.md5
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
@@ -18,7 +18,7 @@ object AES {
 
     fun encryptToHex(content: String, forToken: Boolean): String {
         return try {
-            Hex.encodeHexString(aesEncryptToBytes(content, getKey(forToken)))
+            String(Hex.encodeHex(aesEncryptToBytes(content, getKey(forToken))))
         } catch (e: Exception) {
             "null"
         }
@@ -43,7 +43,7 @@ object AES {
         sb.append(packageId)
         sb.append(key)
         sb.append(packageId)
-        packageId = DigestUtils.md5Hex(sb.toString())
+        packageId = String(Hex.encodeHex(md5(sb.toString())))
         sb = StringBuilder()
         sb.append(packageId.substring(0, 8))
         sb.append(key.substring(0, 8))

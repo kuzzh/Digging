@@ -18,6 +18,37 @@ interface Interactor<in P> {
     suspend operator fun invoke(executeParams: P)
 }
 
+abstract class Motion<EP, T> {
+    private var disposable: Disposable? = null
+    private val subject: BehaviorSubject<T> = BehaviorSubject.create()
+
+    val loading = BehaviorSubject.createDefault(false)
+
+    suspend operator fun invoke(executeParams: EP) {
+        try {
+            loading.onNext(true)
+            setSource(execute(executeParams))
+            loading.onNext(false)
+        } catch (t: Throwable) {
+            loading.onError(t)
+        }
+    }
+
+    protected abstract suspend fun execute(executeParams: EP): Flowable<T>
+
+    fun observe(): Flowable<T> = subject.toFlowable()
+
+    private fun setSource(source: Flowable<T>) {
+        disposable?.dispose()
+        disposable = source.subscribe(subject::onNext, subject::onError)
+    }
+
+    fun clear() {
+        disposable?.dispose()
+        disposable = null
+    }
+}
+
 interface PagingInteractor<T> {
     fun dataSourceFactory(): DataSource.Factory<Int, T>
 }

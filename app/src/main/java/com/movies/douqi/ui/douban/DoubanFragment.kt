@@ -2,6 +2,7 @@ package com.movies.douqi.ui.douban
 
 import com.movies.data.resultentities.InTheaterEntryWithFilm
 import com.movies.douqi.DoubanItemBindingModel_
+import com.movies.douqi.ui.detail.MovieDetailActivity
 import com.movies.douqi.utils.EntryGridEpoxyController
 import com.movies.douqi.widget.EntryGridFragment
 
@@ -16,7 +17,7 @@ class DoubanFragment : EntryGridFragment<InTheaterEntryWithFilm, InTheatersViewM
 ) {
 
     override fun onItemClicked(item: InTheaterEntryWithFilm) {
-        model.onItemClicked()
+        startActivity(MovieDetailActivity.startIntent(context!!, item.film.title!!))
     }
 
     override fun createController(): EntryGridEpoxyController<InTheaterEntryWithFilm> {

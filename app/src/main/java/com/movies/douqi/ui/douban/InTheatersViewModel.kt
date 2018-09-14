@@ -28,7 +28,7 @@ class InTheatersViewModel @Inject constructor(
 ) {
 
     fun onItemClicked() {
-        logger.d("grid item clicked !")
+
     }
 
     override suspend fun callRefresh() {
