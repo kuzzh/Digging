@@ -14,7 +14,8 @@ import com.movies.mahua.entities.Video
  * @description
  * @version
  */
-class MahuaAdapter(val videos: List<Video>) : RecyclerView.Adapter<MahuaAdapter.MahuaViewHolder>() {
+class MahuaAdapter(val videos: List<Video>,
+                   val listener: onMahuaClickListener? = null) : RecyclerView.Adapter<MahuaAdapter.MahuaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MahuaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -30,6 +31,9 @@ class MahuaAdapter(val videos: List<Video>) : RecyclerView.Adapter<MahuaAdapter.
     }
 
     override fun onBindViewHolder(holder: MahuaAdapter.MahuaViewHolder, position: Int) {
+        holder.layout.setOnClickListener {
+            listener?.onClick(videos[position].id)
+        }
         holder.text.text = videos[position].title
     }
 
@@ -37,6 +41,11 @@ class MahuaAdapter(val videos: List<Video>) : RecyclerView.Adapter<MahuaAdapter.
     inner class MahuaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val text: TextView = itemView.findViewById(R.id.sourceName)
+        val layout: View = itemView.findViewById(R.id.layout)
 
+    }
+
+    interface onMahuaClickListener {
+        fun onClick(videoId: Long)
     }
 }

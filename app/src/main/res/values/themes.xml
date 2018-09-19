@@ -1,17 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <!--<item name="colorPrimary">@color/cat_color_primary</item>
+        <item name="colorPrimaryDark">@color/cat_color_primary_dark</item>
+        <item name="colorOnSecondary">@color/cat_color_on_secondary</item>-->
+
+        <item name="colorSecondary">@color/cat_color_secondary</item>
+
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="actionBarPopupTheme">@style/AppTheme.PopupOverlay</item>
 
         <item name="android:colorBackground">@android:color/white</item>
-        <item name="toolbarStyle">@style/Widget.Toolbar</item>
+        <item name="toolbarStyle">@style/Widget.Douqi.Toolbar</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -19,8 +25,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
 
 </resources>

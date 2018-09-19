@@ -8,10 +8,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:transitionGroup="true">
+        android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/sourceName"

@@ -133,6 +133,9 @@ dependencies {
     implementation "com.airbnb.android:epoxy:${Versions.epoxy}"
     implementation "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
     implementation "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
+
+    implementation "com.shuyu:gsyVideoPlayer-java:${Versions.gsyPlayer}"
+    implementation "com.shuyu:GSYVideoPlayer-exo2:${Versions.gsyPlayer}"
 }
 
 dependencies {

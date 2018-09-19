@@ -25,6 +25,7 @@ object Versions {
     const val workManager = "1.0.0-alpha07"
     const val epoxy = "3.0.0-rc1"
     const val mvrx = "0.5.0"
+    const val gsyPlayer = "6.0.0-beta"
 }
 
 object Deps {

@@ -10,6 +10,8 @@ import com.movies.douqi.base.BaseFragment
 import com.movies.douqi.databinding.FragmentDyttBinding
 import com.movies.douqi.extensions.observeNotNull
 import com.movies.douqi.ui.mahua.MahuaViewModel
+import com.movies.douqi.ui.player.PlayerActivity
+import timber.log.Timber
 
 /**
  * @author donnieSky
@@ -17,7 +19,7 @@ import com.movies.douqi.ui.mahua.MahuaViewModel
  * @description
  * @version
  */
-class DyttFragment : BaseFragment() {
+class DyttFragment : BaseFragment(), MahuaAdapter.onMahuaClickListener {
 
     private lateinit var model: DyttViewModel
 
@@ -55,15 +57,20 @@ class DyttFragment : BaseFragment() {
 
         model.mahuaData.observeNotNull(this) {
             if (it.success && it.data != null && it.data!!.isNotEmpty()) {
-                binding.recycler.adapter = MahuaAdapter(it.data!!)
+                binding.recycler.adapter = MahuaAdapter(it.data!!, this)
             }
         }
 
         mahuaModel.data.observeNotNull(this) {
             if (it.isNotEmpty()) {
-                binding.recycler.adapter = MahuaAdapter(it)
+                binding.recycler.adapter = MahuaAdapter(it, this)
             }
         }
+    }
+
+    override fun onClick(videoId: Long) {
+        Timber.d("layout clicked $videoId")
+        startActivity(PlayerActivity.startIntent(context!!, videoId))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

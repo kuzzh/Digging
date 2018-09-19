@@ -1,9 +1,6 @@
 package com.movies.douqi.inject
 
-import com.movies.douqi.initializers.EmojiInitializer
-import com.movies.douqi.initializers.Initializer
-import com.movies.douqi.initializers.RxAndroidInitializer
-import com.movies.douqi.initializers.TimberInitializer
+import com.movies.douqi.initializers.*
 import com.movies.utils.Logger
 import com.movies.utils.TimberLogger
 import dagger.Binds
@@ -35,5 +32,9 @@ abstract class InitializerModule {
     @Binds
     @IntoSet
     abstract fun provideTimberInitializer(initializer: TimberInitializer): Initializer
+
+    @Binds
+    @IntoSet
+    abstract fun provideExoPlayerInitializer(initializer: ExoPlayerInitializer): Initializer
 
 }

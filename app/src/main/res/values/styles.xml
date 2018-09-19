@@ -11,9 +11,10 @@
         <item name="itemTextAppearance">?attr/textAppearanceCaption</item>
     </style>
 
-    <style name="Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
-        <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle2</item>
+    <style name="Widget.Douqi.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
+        <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
     </style>
 
     <style name="TextAppearance.FilmLabel" parent="TextAppearance.AppCompat.Body2">

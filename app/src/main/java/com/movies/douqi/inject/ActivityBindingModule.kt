@@ -4,6 +4,8 @@ import com.movies.douqi.ui.detail.MovieDetailActivity
 import com.movies.douqi.ui.detail.MovieDetailModule
 import com.movies.douqi.ui.main.MainActivity
 import com.movies.douqi.ui.main.MainModule
+import com.movies.douqi.ui.player.PlayerActivity
+import com.movies.douqi.ui.player.PlayerModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -23,5 +25,8 @@ internal abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [MovieDetailModule::class])
     internal abstract fun buildMovieDetailActivity(): MovieDetailActivity
+
+    @ContributesAndroidInjector(modules = [PlayerModule::class])
+    internal abstract fun buildPlayerActivity(): PlayerActivity
 
 }

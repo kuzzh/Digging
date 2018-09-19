@@ -2,6 +2,8 @@ package com.movies.mahua.repositories
 
 import com.google.gson.Gson
 import com.movies.mahua.entities.BodyParams
+import com.movies.mahua.entities.DataParam
+import com.movies.mahua.entities.VideoInfoResult
 import com.movies.mahua.entities.VideosResult
 import com.movies.mahua.services.MahuaApi
 import com.movies.mahua.utils.AES
@@ -35,6 +37,13 @@ class MahuaRepository @Inject constructor(
         val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), encrypt)
 
         return api.searchVideo(body)
+    }
+
+    fun getVideoInfo(videoId: Long): Flowable<VideoInfoResult> {
+        val params = BodyParams(data = DataParam(videoInfoId = videoId), columnId = 0)
+        val encrypt = AES.encryptToHex(Gson().toJson(params), false)
+        val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), encrypt)
+        return api.getVideoDetail(body)
     }
 
 }
