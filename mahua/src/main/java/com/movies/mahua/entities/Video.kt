@@ -1,6 +1,7 @@
 package com.movies.mahua.entities
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 /**
  * @author donnieSky
@@ -59,7 +60,11 @@ data class Episode(
         val m3u8Format: M3u8Format? = null,
         val duration: Long,
         val formatExtra: Map<String, FormatExtra>? = null
-)
+) {
+    fun generateStableId(): Long {
+        return Objects.hash(m3u8Format!!::class, id).toLong()
+    }
+}
 
 data class M3u8Format(
         val free: String? = null,

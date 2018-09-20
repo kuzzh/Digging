@@ -6,9 +6,11 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.movies.douqi.R
 import com.movies.douqi.base.BaseActivity
 import com.movies.douqi.extensions.observeNotNull
+import com.movies.mahua.entities.Episode
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.activity_player.*
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_player.*
 class PlayerActivity : BaseActivity() {
 
     lateinit var model: PlayerViewModel
+
+    private val controller = EpisodeController()
 
     private val videoId: Long by lazy {
         intent.getLongExtra(ARGS_MOVIE_PLAYER_ID, 0)
@@ -41,16 +45,31 @@ class PlayerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+        controller.callbacks = object : EpisodeController.Callbacks {
+            override fun onItemClicked(item: Episode) {
+                val url = "${item.m3u8PlayUrl}${if (item.m3u8Format!!.`1080P` != null) item.m3u8Format!!.`1080P`
+                else item.m3u8Format!!.`720P`}"
+                player.setUp(url, true, item.title)
+                player.startPlayLogic()
+                orientationUtils.isEnable = true
+            }
+        }
+        recycler.apply {
+            itemAnimator = null
+            setController(controller)
+            addItemDecoration(DividerItemDecoration(this@PlayerActivity, DividerItemDecoration.VERTICAL))
+        }
         model = ViewModelProviders.of(this, factory).get(PlayerViewModel::class.java)
         initPlayer()
         model.data.observeNotNull(this) {
             if (it.videoList != null && it.videoList!!.isNotEmpty()) {
-                val episode = it.videoList!![0]
-                val url = "${episode.m3u8PlayUrl}${if (episode.m3u8Format!!.`1080P` != null) episode.m3u8Format!!.`1080P`
-                else episode.m3u8Format!!.`720P`}"
-                player.setUp(url, true, episode.title)
-
-                player.startPlayLogic()
+                title = it.title
+                controller.setData(it.videoList)
             }
         }
 
@@ -59,9 +78,12 @@ class PlayerActivity : BaseActivity() {
 
     private fun initPlayer() {
         orientationUtils = OrientationUtils(this, player)
+        orientationUtils.isEnable = false
         player.backButton.visibility = View.VISIBLE
         player.fullscreenButton.setOnClickListener {
-            orientationUtils.resolveByClick()
+            if (orientationUtils.isLand != 1) {
+                orientationUtils.resolveByClick()
+            }
             player.startWindowFullscreen(this, true, true)
         }
         player.setIsTouchWiget(true)
@@ -70,6 +92,12 @@ class PlayerActivity : BaseActivity() {
         player.isShowFullAnimation = true
         player.isNeedLockFull = true
         player.seekRatio = 1.toFloat()
+        player.isRotateViewAuto = true
+        player.setVideoAllCallBack(object : VideoPlayCallback() {
+            override fun onQuitFullscreen(url: String?, vararg objects: Any?) {
+                orientationUtils.backToProtVideo()
+            }
+        })
         player.backButton.setOnClickListener {
             onBackPressed()
         }
@@ -87,6 +115,7 @@ class PlayerActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        player.currentPlayer.release()
         GSYVideoManager.releaseAllVideos()
         orientationUtils.releaseListener()
     }
@@ -101,7 +130,6 @@ class PlayerActivity : BaseActivity() {
         if (GSYVideoManager.backFromWindowFull(this)) {
             return
         }
-        player.setVideoAllCallBack(null)
         super.onBackPressed()
     }
 }

@@ -18,4 +18,5 @@
 
     <string name="empty_emoji">😏</string>
     <string name="empty_prompt">Y u no watch some Film?</string>
+    <string name="action_search">搜索</string>
 </resources>

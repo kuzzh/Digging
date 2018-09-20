@@ -1,13 +1,17 @@
 package com.movies.douqi.ui.main
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.movies.douqi.R
 import com.movies.douqi.base.BaseActivity
 import com.movies.douqi.extensions.inTransaction
+import com.movies.douqi.ui.detail.MovieDetailActivity
 import com.movies.douqi.ui.douban.DoubanFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -18,11 +22,13 @@ class MainActivity : BaseActivity() {
 
     private lateinit var currentFragment: Fragment
 
+    lateinit var searchView: SearchView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
+        title = "正在上映"
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
@@ -58,6 +64,44 @@ class MainActivity : BaseActivity() {
             currentFragment = fragment
             replace(R.id.container, fragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val item = menu.findItem(R.id.action_search)
+        searchView = MenuItemCompat.getActionView(item) as SearchView
+        searchView.setIconifiedByDefault(true)
+        searchView.queryHint = "搜索电影/电视剧"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    startActivity(MovieDetailActivity.startIntent(this@MainActivity, query))
+                }
+                searchView.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onMenuOpened(featureId: Int, menu: Menu?): Boolean {
+        if (menu != null) {
+            if (menu.javaClass.simpleName.equals("MenuBuilder", true)) {
+                try {
+                    val method = menu.javaClass.getDeclaredMethod("setOptionalIconsVisible", Boolean::class.java)
+                    method.isAccessible = true
+                    method.invoke(menu, true)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu)
     }
 
     override fun onBackPressed() {

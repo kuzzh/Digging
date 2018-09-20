@@ -17,6 +17,10 @@ import kotlinx.android.synthetic.main.activity_movie_detail.*
  */
 class MovieDetailActivity : BaseActivity() {
 
+    private val title: String by lazy {
+        intent.getStringExtra(ARGS_MOVIE_DETAIL_TITLE)
+    }
+
     companion object {
         private const val ARGS_MOVIE_DETAIL_TITLE = "ARGS_MOVIE_DETAIL_TITLE"
         fun startIntent(context: Context, title: String): Intent {
@@ -30,13 +34,14 @@ class MovieDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
         setSupportActionBar(toolbar)
+        setTitle(title)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
         }
         toolbar.setNavigationOnClickListener { onBackPressed() }
         if (savedInstanceState == null) {
             supportFragmentManager.inTransaction {
-                add(R.id.detail_container, DyttFragment.newInstance(intent.getStringExtra(ARGS_MOVIE_DETAIL_TITLE)))
+                add(R.id.detail_container, DyttFragment.newInstance(title))
             }
         }
     }
