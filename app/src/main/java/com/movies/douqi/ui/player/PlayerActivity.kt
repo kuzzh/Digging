@@ -59,8 +59,12 @@ class PlayerActivity : BaseActivity() {
                 } else {
                     item.title
                 }
-                val url = "${item.m3u8PlayUrl}${if (item.m3u8Format!!.`1080P` != null) item.m3u8Format!!.`1080P`
-                else item.m3u8Format!!.`720P`}"
+                val url = "${item.m3u8PlayUrl}${when {
+                    item.m3u8Format!!.`1080P` != null -> item.m3u8Format!!.`1080P`
+                    item.m3u8Format!!.`720P` != null -> item.m3u8Format!!.`720P`
+                    item.m3u8Format!!.`480P` != null -> item.m3u8Format!!.`480P`
+                    else -> item.m3u8Format!!.free
+                }}"
                 player.setUp(url, true, title)
                 player.startPlayLogic()
                 orientationUtils.isEnable = true
