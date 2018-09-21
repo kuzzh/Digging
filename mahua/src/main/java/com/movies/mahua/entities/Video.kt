@@ -61,6 +61,10 @@ data class Episode(
         val duration: Long,
         val formatExtra: Map<String, FormatExtra>? = null
 ) {
+
+    val epsideNum: String
+        get() = this.sortNum.toString()
+
     fun generateStableId(): Long {
         return Objects.hash(m3u8Format!!::class, id).toLong()
     }

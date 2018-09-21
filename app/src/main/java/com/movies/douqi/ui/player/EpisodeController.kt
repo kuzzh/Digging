@@ -21,7 +21,7 @@ open class EpisodeController : TypedEpoxyController<List<Episode?>>() {
         if (data.isNotEmpty()) {
             data.forEachIndexed { index, episode ->
                 when {
-                    episode != null -> buildItemModel(episode)
+                    episode != null -> buildItemModel(episode, data.size == 1)
                     else -> buildItemPlaceholder(index)
                 }.addTo(this)
             }
@@ -33,9 +33,10 @@ open class EpisodeController : TypedEpoxyController<List<Episode?>>() {
         }
     }
 
-    private fun buildItemModel(item: Episode): EpisodeItemBindingModel_ {
+    private fun buildItemModel(item: Episode, isFilm: Boolean): EpisodeItemBindingModel_ {
         return EpisodeItemBindingModel_()
                 .id(item.generateStableId())
+                .isFilm(isFilm)
                 .episode(item)
                 .clickListener(View.OnClickListener { callbacks?.onItemClicked(item) })
 

@@ -27,6 +27,8 @@ class PlayerActivity : BaseActivity() {
 
     private val controller = EpisodeController()
 
+    private var isFilm: Boolean = false
+
     private val videoId: Long by lazy {
         intent.getLongExtra(ARGS_MOVIE_PLAYER_ID, 0)
     }
@@ -52,9 +54,14 @@ class PlayerActivity : BaseActivity() {
         toolbar.setNavigationOnClickListener { onBackPressed() }
         controller.callbacks = object : EpisodeController.Callbacks {
             override fun onItemClicked(item: Episode) {
+                val title = if (!isFilm) {
+                    "${item.title} 第${item.sortNum}集"
+                } else {
+                    item.title
+                }
                 val url = "${item.m3u8PlayUrl}${if (item.m3u8Format!!.`1080P` != null) item.m3u8Format!!.`1080P`
                 else item.m3u8Format!!.`720P`}"
-                player.setUp(url, true, item.title)
+                player.setUp(url, true, title)
                 player.startPlayLogic()
                 orientationUtils.isEnable = true
             }
@@ -68,6 +75,10 @@ class PlayerActivity : BaseActivity() {
         initPlayer()
         model.data.observeNotNull(this) {
             if (it.videoList != null && it.videoList!!.isNotEmpty()) {
+                if (it.type == 1) {
+                    isFilm = true
+                    title = it.title
+                }
                 title = it.title
                 controller.setData(it.videoList)
             }
@@ -89,7 +100,7 @@ class PlayerActivity : BaseActivity() {
         player.setIsTouchWiget(true)
         player.isRotateViewAuto = false
         player.isLockLand = false
-        player.isShowFullAnimation = true
+        player.isShowFullAnimation = false
         player.isNeedLockFull = true
         player.seekRatio = 1.toFloat()
         player.isRotateViewAuto = true
