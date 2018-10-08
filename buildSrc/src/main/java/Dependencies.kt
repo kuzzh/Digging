@@ -3,7 +3,7 @@ object Versions {
     const val targetSDK = 28
     const val compileSDK = 28
     const val buildTools = "3.3.0-alpha10"
-    const val kotlin = "1.2.70"
+    const val kotlin = "1.2.71"
     const val ktx = "1.0.0"
     const val coroutines = "0.24.0"
     const val dagger = "2.16"
@@ -17,9 +17,9 @@ object Versions {
     const val support = "28.0.0-rc01"
     const val material = "1.0.0"
     const val constraint = "1.1.3"
-    const val room = "2.0.0-rc01"
+    const val room = "2.0.0"
     const val lifecycle = "2.0.0"
-    const val paging = "2.0.0-rc01"
+    const val paging = "2.0.0"
     const val glide = "4.8.0"
     const val navigation = "1.0.0-alpha05"
     const val workManager = "1.0.0-alpha07"
