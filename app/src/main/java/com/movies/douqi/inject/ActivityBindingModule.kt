@@ -6,6 +6,8 @@ import com.movies.douqi.ui.main.MainActivity
 import com.movies.douqi.ui.main.MainModule
 import com.movies.douqi.ui.player.PlayerActivity
 import com.movies.douqi.ui.player.PlayerModule
+import com.movies.douqi.ui.tivi.TiviPlayerActivity
+import com.movies.douqi.ui.tivi.TiviPlayerModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,9 +20,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 internal abstract class ActivityBindingModule {
 
-    @ContributesAndroidInjector(modules = [
-        MainModule::class
-    ])
+    @ContributesAndroidInjector(modules = [MainModule::class])
     internal abstract fun buildMainActivity(): MainActivity
 
     @ContributesAndroidInjector(modules = [MovieDetailModule::class])
@@ -28,5 +28,8 @@ internal abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [PlayerModule::class])
     internal abstract fun buildPlayerActivity(): PlayerActivity
+
+    @ContributesAndroidInjector(modules = [TiviPlayerModule::class])
+    internal abstract fun buildTiviPlayerActivity(): TiviPlayerActivity
 
 }

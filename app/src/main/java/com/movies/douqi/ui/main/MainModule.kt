@@ -1,5 +1,6 @@
 package com.movies.douqi.ui.main
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import com.movies.douqi.inject.ViewModelKey
 import com.movies.douqi.ui.douban.DoubanFragment
@@ -7,6 +8,7 @@ import com.movies.douqi.ui.douban.DoubanViewModel
 import com.movies.douqi.ui.douban.InTheatersViewModel
 import com.movies.douqi.ui.dytt.DyttFragment
 import com.movies.douqi.ui.dytt.DyttViewModel
+import com.movies.douqi.ui.tivi.TiviFragment
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -21,11 +23,17 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class MainModule {
 
+    @Binds
+    abstract fun provideMainActivity(activity: MainActivity): AppCompatActivity
+
     @ContributesAndroidInjector
     internal abstract fun buildDoubanFragment(): DoubanFragment
 
     @ContributesAndroidInjector
     internal abstract fun buildDyttFragment(): DyttFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun buildTiviFragment(): TiviFragment
 
     @Binds
     @IntoMap

@@ -13,6 +13,7 @@ import com.movies.douqi.base.BaseActivity
 import com.movies.douqi.extensions.inTransaction
 import com.movies.douqi.ui.detail.MovieDetailActivity
 import com.movies.douqi.ui.douban.DoubanFragment
+import com.movies.douqi.ui.tivi.TiviFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -28,17 +29,18 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        title = "正在上映"
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
         navigation.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
+                    title = getString(R.string.title_home)
                     replaceFragment(DoubanFragment())
                 }
                 R.id.navigation_dashboard -> {
-
+                    title = getString(R.string.title_dashboard)
+                    replaceFragment(TiviFragment())
                 }
                 R.id.navigation_notifications -> {
 
