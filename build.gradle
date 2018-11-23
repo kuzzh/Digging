@@ -4,13 +4,14 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
         jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${Versions.buildTools}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}"
-
+        // classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -20,6 +21,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
         jcenter()
     }
 }

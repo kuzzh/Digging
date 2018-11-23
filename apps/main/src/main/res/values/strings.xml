@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">豆萁</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">正在上映</string>
+    <string name="title_dashboard">电视频道</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="empty_emoji">😏</string>
+    <string name="empty_prompt">Y u no watch some Film?</string>
+    <string name="action_search">搜索</string>
+    <string name="title_nba">nba</string>
+    <string name="title_douban">douban</string>
+    <string name="title_dytt">dytt</string>
+    <string name="title_mahua">mahua</string>
+</resources>

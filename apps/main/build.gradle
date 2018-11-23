@@ -1,0 +1,149 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    correctErrorTypes = true
+}
+
+android {
+    dataBinding {
+        enabled = true
+    }
+
+    compileSdkVersion Versions.compileSDK
+    defaultConfig {
+        applicationId "com.movies.douqi"
+        minSdkVersion Versions.minSDK
+        targetSdkVersion Versions.targetSDK
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        debug {
+            storeFile rootProject.file("buildsystem/app-debug.jks")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
+        release {
+            storeFile rootProject.file(propOrDef('DOUQI_RELEASE_STORE_FILE', ""))
+            storePassword propOrDef('DOUQI_RELEASE_STORE_PWD', "")
+            keyAlias propOrDef('DOUQI_RELEASE_KEY_ALIAS', "")
+            keyPassword propOrDef('DOUQI_RELEASE_KEY_PWD', "")
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            versionNameSuffix "-dev"
+            applicationIdSuffix ".debug"
+        }
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'kotlin/**'
+        exclude '**/*.kotlin_metadata'
+        exclude 'META-INF/*.kotlin_module'
+        exclude 'META-INF/*.version'
+    }
+
+    lintOptions {
+        // Disable lintVital. Not needed since lint is run on CI
+        checkReleaseBuilds false
+
+        disable 'GradleCompatible'
+    }
+
+    dynamicFeatures = [
+            ":feature_nba",
+            ":feature_douban",
+            ":feature_dytt",
+            ":feature_mahua"
+    ]
+
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+dependencies {
+    kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    kapt "com.github.bumptech.glide:compiler:${Versions.glide}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
+    kapt "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
+    //kapt "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02"
+}
+
+dependencies {
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    api "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+
+    implementation "com.android.support:customtabs:${Versions.support}"
+    implementation "com.android.support:palette-v7:${Versions.support}"
+    implementation "com.android.support:support-emoji:${Versions.support}"
+
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    implementation "com.google.android.material:material:${Versions.material}"
+    implementation "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    implementation "com.google.dagger:dagger-android:${Versions.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    implementation "com.github.bumptech.glide:glide:${Versions.glide}"
+    implementation "androidx.core:core-ktx:${Versions.ktx}"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:${Versions.lifecycle}"
+    implementation "androidx.room:room-runtime:${Versions.room}"
+    implementation "androidx.room:room-rxjava2:${Versions.room}"
+    implementation "androidx.paging:paging-runtime:${Versions.paging}"
+    implementation "androidx.paging:paging-rxjava2:${Versions.paging}"
+
+    implementation "com.airbnb.android:mvrx:${Versions.mvrx}"
+    implementation "com.airbnb.android:epoxy:${Versions.epoxy}"
+    implementation "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
+    implementation "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
+
+    implementation "com.shuyu:gsyVideoPlayer-java:${Versions.gsyPlayer}"
+    implementation "com.shuyu:GSYVideoPlayer-exo2:${Versions.gsyPlayer}"
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+    testImplementation "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    testImplementation "androidx.room:room-testing:${Versions.room}"
+    testImplementation "androidx.paging:paging-common:${Versions.paging}"
+}

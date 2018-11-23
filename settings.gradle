@@ -1,1 +1,16 @@
-include ':app', ':base', ':base_android', ':data', ':dytt', ':dytt_android', ':douban', ':douban_android', ':data_android', ':interactors', ':mahua', ':mahua_android'
+include ':app',
+        ':feature_mahua',
+        ':feature_dytt',
+        ':feature_douban',
+        ':feature_nba',
+        ':module_data',
+        ':module_core'
+
+project(':app').projectDir = new File(rootDir, 'apps/main')
+project(':feature_mahua').projectDir = new File(rootDir, 'features/mahua')
+project(':feature_dytt').projectDir = new File(rootDir, 'features/dytt')
+project(':feature_douban').projectDir = new File(rootDir, 'features/douban')
+project(':feature_nba').projectDir = new File(rootDir, 'features/nba')
+
+project(':module_core').projectDir = new File(rootDir, 'modules/core')
+project(':module_data').projectDir = new File(rootDir, 'modules/data')
