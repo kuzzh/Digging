@@ -1,4 +1,4 @@
-package com.movies.douqi.ui.main
+package com.movies.douqi.main
 
 import androidx.lifecycle.ViewModel
 import javax.inject.Inject
@@ -11,6 +11,4 @@ import javax.inject.Singleton
  * @version
  */
 @Singleton
-class MainViewModel @Inject constructor() : ViewModel() {
-
-}
+class MainViewModel @Inject constructor() : ViewModel()

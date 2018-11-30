@@ -2,7 +2,7 @@ object Versions {
     const val minSDK = 21
     const val targetSDK = 28
     const val compileSDK = 28
-    const val buildTools = "3.3.0-beta04"
+    const val buildTools = "3.3.0-rc01"
     const val kotlin = "1.3.10"
     const val ktx = "1.0.1"
     const val coroutines = "1.0.0"
@@ -21,11 +21,14 @@ object Versions {
     const val lifecycle = "2.0.0"
     const val paging = "2.0.0"
     const val glide = "4.8.0"
-    const val navigation = "1.0.0-alpha05"
+    const val navigation = "1.0.0-alpha07"
     const val workManager = "1.0.0-alpha07"
+    const val multidex = "1.0.3"
     const val epoxy = "3.0.0-rc1"
     const val mvrx = "0.6.0"
     const val gsyPlayer = "6.0.0-beta"
+
+    const val coroutinesAdapter = "0.9.2"
 }
 
 object Deps {

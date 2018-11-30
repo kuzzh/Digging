@@ -7,11 +7,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
-
+    /*dataBinding {
+        enabled = true
+    }*/
+    compileSdkVersion Versions.compileSDK
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion Versions.minSDK
+        targetSdkVersion Versions.targetSDK
         versionCode 1
         versionName "1.0"
     }
@@ -23,6 +25,15 @@ android {
 }
 
 dependencies {
+    kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+}
+
+dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
+    implementation project(":module_core")
+    implementation project(":module_data")
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
 }

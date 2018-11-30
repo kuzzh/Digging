@@ -14,6 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -32,9 +38,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":module_core")
+}
 
+dependencies {
+    kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
+}
+
+dependencies {
     implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+
+    api "androidx.room:room-runtime:${Versions.room}"
+    api "androidx.room:room-common:${Versions.room}"
+    api "androidx.room:room-rxjava2:${Versions.room}"
+    api "androidx.paging:paging-common:${Versions.paging}"
+    api "androidx.paging:paging-runtime:${Versions.paging}"
+    api "androidx.paging:paging-rxjava2:${Versions.paging}"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
