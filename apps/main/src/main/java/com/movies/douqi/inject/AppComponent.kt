@@ -1,8 +1,8 @@
 package com.movies.douqi.inject
 
-import com.movies.core.inject.ApiModule
-import com.movies.core.inject.HttpModule
+import com.movies.core.inject.CoreModule
 import com.movies.core.inject.ViewModelModule
+import com.movies.data.inject.DataModule
 import com.movies.data.inject.DatabaseModule
 import com.movies.douqi.App
 import dagger.Component
@@ -19,8 +19,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AppModule::class,
-    HttpModule::class,
-    ApiModule::class,
+    CoreModule::class,
+    DataModule::class,
     DatabaseModule::class,
     ViewModelModule::class,
     ActivityBindingModule::class,

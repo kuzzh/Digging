@@ -24,6 +24,8 @@ class IntheatersFragment : BaseDaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         model = ViewModelProviders.of(this, factory).get(IntheatersViewModel::class.java)
+
+        model.intheaters()
     }
 
 }

@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/intheaters_dest">
+            app:startDestination="@+id/douban_dest">
 
     <fragment
-        android:id="@+id/intheaters_dest"
-        android:name="com.movies.douban.intheaters.IntheatersFragment"
+        android:id="@+id/douban_dest"
+        android:name="com.movies.douban.DoubanFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_intheaters"/>
+        tools:layout="@layout/fragment_douban"/>
 
 </navigation>

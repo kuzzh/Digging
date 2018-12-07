@@ -1,6 +1,8 @@
 package com.movies.data.repositories.intheaters
 
+import com.movies.core.Result
 import com.movies.core.Success
+import com.movies.data.entities.Video
 import javax.inject.Inject
 
 /**
@@ -11,7 +13,7 @@ import javax.inject.Inject
  */
 class IntheatersRepository @Inject constructor(
         private val local: LocalIntheaters,
-        private val remote: IntheatersDataSource
+        private val remote: RemoteIntheaters
 ) {
 
     private var pageSize = 0
@@ -29,6 +31,10 @@ class IntheatersRepository @Inject constructor(
         } else {
             refresh()
         }
+    }
+
+    suspend fun intheaters(): Result<List<Video>> {
+        return remote.inTheaters(0, 20)
     }
 
     private suspend fun updateIntheaters(page: Int, resetOnSave: Boolean) {

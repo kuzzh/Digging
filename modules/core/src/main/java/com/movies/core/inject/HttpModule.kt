@@ -29,8 +29,8 @@ class HttpModule {
     @IntoSet
     fun provideHttpLogger(): Interceptor = HttpLoggingInterceptor(
             HttpLoggingInterceptor.Logger { message ->
-                Timber.d(message)
-            }).setLevel(HttpLoggingInterceptor.Level.BASIC)
+                Timber.tag("Okhttp").d(message)
+            }).setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @DOUBAN
     @Provides

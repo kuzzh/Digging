@@ -12,6 +12,7 @@ import com.movies.core.base.BaseDaggerActivity
 import com.movies.douqi.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import timber.log.Timber
 
 class MainActivity : BaseDaggerActivity() {
 
@@ -29,6 +30,7 @@ class MainActivity : BaseDaggerActivity() {
             setupActionBarWithNavController(it, drawer)
             navigation.setupWithNavController(it)
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

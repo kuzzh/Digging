@@ -6,6 +6,7 @@ import com.movies.core.initializers.AppInitializer
 import com.movies.douqi.inject.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -14,7 +15,7 @@ import javax.inject.Inject
  * @description
  * @version
  */
-class App : DaggerApplication() {
+open class App : DaggerApplication() {
 
     @Inject
     lateinit var initializers: AppInitializer
@@ -26,6 +27,10 @@ class App : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         initializers.init(this)
     }
 

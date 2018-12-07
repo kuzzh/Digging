@@ -7,9 +7,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    /*dataBinding {
+    dataBinding {
         enabled = true
-    }*/
+    }
     compileSdkVersion Versions.compileSDK
     defaultConfig {
         minSdkVersion Versions.minSDK
@@ -32,8 +32,8 @@ dependencies {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
-    implementation project(":module_core")
-    implementation project(":module_data")
+    /*implementation project(":module_core")
+    implementation project(":module_data")*/
     implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
 }

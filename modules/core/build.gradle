@@ -75,10 +75,10 @@ dependencies {
     api "androidx.paging:paging-runtime:${Versions.paging}"
     api "androidx.paging:paging-rxjava2:${Versions.paging}"
 
-    /*api "com.airbnb.android:mvrx:${Versions.mvrx}"
+    api "com.airbnb.android:mvrx:${Versions.mvrx}"
     api "com.airbnb.android:epoxy:${Versions.epoxy}"
     api "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
-    api "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"*/
+    api "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
 
     api "com.shuyu:gsyVideoPlayer-java:${Versions.gsyPlayer}"
     api "com.shuyu:GSYVideoPlayer-exo2:${Versions.gsyPlayer}"

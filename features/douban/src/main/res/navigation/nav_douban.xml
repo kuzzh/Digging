@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_douban"
+            app:startDestination="@id/intheatersFragment">
+
+    <fragment
+        android:id="@+id/intheatersFragment"
+        android:name="com.movies.douban.intheaters.IntheatersFragment"
+        android:label="IntheatersFragment"/>
+</navigation>

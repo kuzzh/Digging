@@ -2,11 +2,11 @@ object Versions {
     const val minSDK = 21
     const val targetSDK = 28
     const val compileSDK = 28
-    const val buildTools = "3.3.0-rc01"
-    const val kotlin = "1.3.10"
+    const val buildTools = "3.3.0-rc02"
+    const val kotlin = "1.3.11"
     const val ktx = "1.0.1"
     const val coroutines = "1.0.0"
-    const val dagger = "2.18"
+    const val dagger = "2.19"
     const val retrofit = "2.4.0"
     const val okhttp = "3.11.0"
     const val timber = "4.7.1"
@@ -24,7 +24,7 @@ object Versions {
     const val navigation = "1.0.0-alpha07"
     const val workManager = "1.0.0-alpha07"
     const val multidex = "1.0.3"
-    const val epoxy = "3.0.0-rc1"
+    const val epoxy = "3.0.0"
     const val mvrx = "0.6.0"
     const val gsyPlayer = "6.0.0-beta"
 

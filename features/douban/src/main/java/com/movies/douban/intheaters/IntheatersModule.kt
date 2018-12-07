@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.movies.core.inject.ViewModelKey
 import dagger.Binds
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 /**
@@ -15,9 +14,6 @@ import dagger.multibindings.IntoMap
  */
 @Module
 abstract class IntheatersModule {
-
-    @ContributesAndroidInjector
-    abstract fun bindIntheatersFragment(): IntheatersFragment
 
     @Binds
     @IntoMap
