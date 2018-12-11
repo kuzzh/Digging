@@ -33,10 +33,6 @@ class IntheatersRepository @Inject constructor(
         }
     }
 
-    suspend fun intheaters(): Result<List<Video>> {
-        return remote.inTheaters(0, 20)
-    }
-
     private suspend fun updateIntheaters(page: Int, resetOnSave: Boolean) {
         val response = remote.inTheaters(page, 20)
         when (response) {

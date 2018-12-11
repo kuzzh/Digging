@@ -20,7 +20,7 @@ class RemoteIntheaters @Inject constructor(
 ) : IntheatersDataSource {
     override suspend fun inTheaters(start: Int, count: Int): Result<List<Video>> {
         return runner.executeForResponse(mapper) {
-            service.inTheaters(start, count).await()
+            service.inTheaters(start, count)
         }
     }
 }

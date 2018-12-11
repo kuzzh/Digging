@@ -1,6 +1,7 @@
 package com.movies.douban.intheaters
 
 import com.movies.data.interactors.UpdateIntheaters
+import com.movies.data.interactors.launchInteractor
 import com.movies.douqi.utils.AppViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -21,10 +22,8 @@ class IntheatersViewModel @Inject constructor(
     fun intheaters() {
         scope.launch {
             try {
-                Timber.tag(TAG).e("begin request intheaters!")
-                val intheaters = interactor.intheaters()
-                Timber.tag(TAG).d(intheaters.get()?.first()?.title)
-                //launchInteractor(interactor, UpdateIntheaters.Params(UpdateIntheaters.Page.REFRESH))
+                Timber.tag(TAG).d("begin request intheaters!")
+                launchInteractor(interactor, UpdateIntheaters.Params(UpdateIntheaters.Page.REFRESH))
             } catch (e: Exception) {
                 Timber.tag(TAG).e(e)
             }
