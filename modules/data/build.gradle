@@ -57,7 +57,7 @@ dependencies {
     api "androidx.paging:paging-runtime:${Versions.paging}"
     api "androidx.paging:paging-rxjava2:${Versions.paging}"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    testImplementation "junit:junit:${Versions.junit}"
+    androidTestImplementation "androidx.test:runner:${Versions.runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }

@@ -1,5 +1,6 @@
 package com.movies.data.daos
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -18,6 +19,9 @@ abstract class VideoDao : EntityDao<Video> {
     @Transaction
     @Query("SELECT * FROM videos ORDER BY rating DESC LIMIT :count OFFSET :offset")
     abstract override fun entire(count: Int, offset: Int): Flowable<List<Video>>
+
+    @Query("SELECT * FROM videos ORDER BY id DESC")
+    abstract fun entirePaging(): DataSource.Factory<Int, Video>
 
     @Query("SELECT COUNT(id) FROM videos")
     abstract fun getEntityCount(): Int?

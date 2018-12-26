@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     dataBinding {
         enabled = true
@@ -27,13 +31,13 @@ android {
 dependencies {
     kapt "com.google.dagger:dagger-compiler:${Versions.dagger}"
     kapt "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    kapt "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
-    /*implementation project(":module_core")
-    implementation project(":module_data")*/
     implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+    implementation "com.google.android.material:material:${Versions.material}"
     implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
 }

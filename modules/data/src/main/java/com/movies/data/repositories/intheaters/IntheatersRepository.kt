@@ -1,6 +1,6 @@
 package com.movies.data.repositories.intheaters
 
-import com.movies.core.Result
+import androidx.paging.DataSource
 import com.movies.core.Success
 import com.movies.data.entities.Video
 import javax.inject.Inject
@@ -15,6 +15,8 @@ class IntheatersRepository @Inject constructor(
         private val local: LocalIntheaters,
         private val remote: RemoteIntheaters
 ) {
+
+    fun observeForPaging(): DataSource.Factory<Int, Video> = local.getIntheatersPaging()
 
     private var pageSize = 0
 

@@ -99,8 +99,6 @@ dependencies {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
-    implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     implementation "com.android.support:multidex:${Versions.multidex}"
 
     api "android.arch.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -108,9 +106,9 @@ dependencies {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    testImplementation "junit:junit:${Versions.junit}"
+    androidTestImplementation "androidx.test:runner:${Versions.runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Versions.espresso}"
 
     testImplementation "androidx.arch.core:core-testing:${Versions.lifecycle}"
     testImplementation "androidx.room:room-testing:${Versions.room}"

@@ -1,8 +1,8 @@
 object Versions {
-    const val minSDK = 21
+    const val minSDK = 23
     const val targetSDK = 28
     const val compileSDK = 28
-    const val buildTools = "3.3.0-rc02"
+    const val buildTools = "3.3.0-rc03"
     const val kotlin = "1.3.11"
     const val ktx = "1.0.1"
     const val coroutines = "1.0.0"
@@ -15,13 +15,13 @@ object Versions {
     const val rxAndroid = "2.1.0"
     const val appcompat = "1.0.2"
     const val support = "28.0.0-rc01"
-    const val material = "1.0.0"
+    const val material = "1.1.0-alpha02"
     const val constraint = "1.1.3"
     const val room = "2.0.0"
     const val lifecycle = "2.0.0"
     const val paging = "2.0.0"
     const val glide = "4.8.0"
-    const val navigation = "1.0.0-alpha07"
+    const val navigation = "1.0.0-alpha09"
     const val workManager = "1.0.0-alpha07"
     const val multidex = "1.0.3"
     const val epoxy = "3.0.0"
@@ -29,6 +29,10 @@ object Versions {
     const val gsyPlayer = "6.0.0-beta"
 
     const val coroutinesAdapter = "0.9.2"
+
+    const val junit = "4.12"
+    const val runner = "1.1.1"
+    const val espresso = "3.1.1"
 }
 
 object Deps {

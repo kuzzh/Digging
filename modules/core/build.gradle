@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     compileSdkVersion Versions.compileSDK
     defaultConfig {
@@ -36,8 +40,8 @@ dependencies {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
-    implementation "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    api "androidx.appcompat:appcompat:${Versions.appcompat}"
+    api "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
 
     api "androidx.emoji:emoji:1.0.0"
     api "androidx.emoji:emoji-appcompat:1.0.0"
@@ -83,7 +87,7 @@ dependencies {
     api "com.shuyu:gsyVideoPlayer-java:${Versions.gsyPlayer}"
     api "com.shuyu:GSYVideoPlayer-exo2:${Versions.gsyPlayer}"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    testImplementation "junit:junit:${Versions.junit}"
+    androidTestImplementation "androidx.test:runner:${Versions.runner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }

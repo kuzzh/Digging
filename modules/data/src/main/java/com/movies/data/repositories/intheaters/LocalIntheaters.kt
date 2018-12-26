@@ -1,5 +1,6 @@
 package com.movies.data.repositories.intheaters
 
+import androidx.paging.DataSource
 import com.movies.data.daos.VideoDao
 import com.movies.data.entities.Video
 import com.movies.data.utils.DatabaseTransactionRunner
@@ -30,5 +31,7 @@ class LocalIntheaters @Inject constructor(
     fun deleteAll() = dao.deleteAll()
 
     fun getPageSize(): Int? = dao.getEntityCount()
+
+    fun getIntheatersPaging(): DataSource.Factory<Int, Video> = dao.entirePaging()
 
 }
